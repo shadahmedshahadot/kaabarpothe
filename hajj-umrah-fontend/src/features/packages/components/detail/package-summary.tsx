@@ -1,0 +1,64 @@
+import Link from 'next/link'
+import { Clock, Plane, Calendar, Star, Phone, Users } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { formatCurrency, formatDate } from '@/utils/format'
+import { SITE } from '@/constants'
+import type { Package } from '@/data/packages'
+import { PackageStatCard } from './stat-card'
+
+export function PackageSummary({ pkg }: { pkg: Package }) {
+  const discounted = pkg.price - pkg.discount
+  return (
+    <div className="lg:col-span-5">
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
+        <Badge variant="outline" className="capitalize">{pkg.tier}</Badge>
+        <Badge variant={pkg.availability === 'limited' ? 'warning' : pkg.availability === 'soldout' ? 'danger' : 'success'}>
+          {pkg.availability === 'available' && '✓ Available'}
+          {pkg.availability === 'limited' && `Only ${pkg.seatsLeft} seats left`}
+          {pkg.availability === 'soldout' && 'Sold out'}
+        </Badge>
+      </div>
+
+      <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3 text-balance">{pkg.name}</h1>
+      <p className="text-base text-muted-foreground mb-5 leading-relaxed">{pkg.shortDescription}</p>
+
+      <div className="flex items-center gap-4 mb-6 text-sm">
+        <div className="flex items-center gap-1">
+          <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+          <span className="font-bold text-foreground">{pkg.rating}</span>
+          <span className="text-muted-foreground">({pkg.reviewsCount} reviews)</span>
+        </div>
+        <span className="text-muted-foreground">•</span>
+        <span className="text-muted-foreground">{pkg.bookingsCount} booked</span>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 mb-6">
+        <PackageStatCard icon={Clock} label="Duration" value={`${pkg.duration} days`} />
+        <PackageStatCard icon={Calendar} label="Departure" value={formatDate(pkg.departureDate, { month: 'short', day: 'numeric' })} />
+        <PackageStatCard icon={Plane} label="Flight" value={pkg.flight.class} />
+        <PackageStatCard icon={Users} label="Group size" value={pkg.groupSize} />
+      </div>
+
+      <div className="bg-card border border-border rounded-2xl p-6 mb-4">
+        <div className="flex items-end justify-between mb-4">
+          <div>
+            {pkg.discount > 0 && (
+              <p className="text-sm text-muted-foreground line-through">{formatCurrency(pkg.price)}</p>
+            )}
+            <p className="text-4xl font-bold text-foreground leading-none">{formatCurrency(discounted)}</p>
+            <p className="text-xs text-muted-foreground mt-1">per pilgrim · all-inclusive</p>
+          </div>
+          {pkg.discount > 0 && <Badge variant="danger">Save {formatCurrency(pkg.discount)}</Badge>}
+        </div>
+        <Link href="#" className="block w-full text-center bg-gradient-to-r from-primary to-amber-600 text-primary-foreground py-4 rounded-xl font-bold shadow-lg shadow-primary/25 hover:scale-[1.01] transition-transform">
+          Book Now — Reserve seat
+        </Link>
+        <p className="text-center text-xs text-muted-foreground mt-3">25% deposit required · Free cancellation 60+ days</p>
+      </div>
+
+      <a href={`tel:${SITE.contact.phoneHref}`} className="flex items-center justify-center gap-2 py-3 border border-border rounded-xl text-sm text-foreground/70 hover:text-foreground hover:border-primary transition-all">
+        <Phone className="w-4 h-4" /> Speak with our team
+      </a>
+    </div>
+  )
+}

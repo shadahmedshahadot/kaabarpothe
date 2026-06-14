@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\")",
+      "Bash(dir C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend *)",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\components\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\lib\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\components\\\\ui\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\lib\\\\stores\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\[type]\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\hajj\")",
+      "Bash(dir \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\umrah\")",
+      "Bash(dir C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\[type]\\\\[id] *)",
+      "Bash(del /Q \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\hajj\\\\page.tsx\")",
+      "Bash(del /Q \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\umrah\\\\page.tsx\")",
+      "Bash(del /Q \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\page.tsx\")",
+      "Bash(rmdir /S /Q \"C:\\\\Users\\\\mdrub\\\\Desktop\\\\hajj-umrah\\\\hajj-umrah-fontend\\\\app\\\\packages\\\\[type]\")",
+      "PowerShell(Remove-Item *)",
+      "Bash(pnpm install *)",
+      "Bash(grep -vE \"\\\\.map$\")",
+      "Bash(ls node_modules/lucide-react/dist/esm/icons/image-icon.mjs)",
+      "Bash(ls node_modules/lucide-react/dist/esm/icons/image.mjs)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Move-Item *)",
+      "PowerShell(Get-ChildItem *)",
+      "Bash(npx tsc *)",
+      "Bash(tee /tmp/tsc.log)",
+      "PowerShell(Copy-Item *)"
+    ]
+  }
+}
