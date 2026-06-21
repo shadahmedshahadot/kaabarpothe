@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm pnpm-lock.yaml)",
+      "Bash(npm install *)",
+      "Bash(git add *)",
+      "Bash(git rm *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(npm i *)",
+      "Bash(npm run *)"
+    ]
+  }
+}
