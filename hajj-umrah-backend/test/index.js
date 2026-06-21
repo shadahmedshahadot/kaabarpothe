@@ -3,3 +3,6 @@ const dataTwo = ['info','information','confirm']
 
 const mainData = [...dataOne,...dataTwo]
 console.log(mainData)
+console.log("hello world")
+
+
