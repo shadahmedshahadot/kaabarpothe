@@ -21,13 +21,17 @@ export function RegisterForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [agreed, setAgreed] = useState(false)
+  const [pending, setPending] = useState(false)
 
   const [register, { isLoading }] = useRegisterMutation()
   const dispatch = useAppDispatch()
   const router = useRouter()
 
+  const isBusy = isLoading || pending
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isBusy) return
     const full_name = `${firstName.trim()} ${lastName.trim()}`.trim()
     if (!full_name || !email || !password) {
       toast.error('সকল ক্ষেত্র পূরণ করুন')
@@ -41,8 +45,13 @@ export function RegisterForm() {
       toast.error('শর্তাবলী মেনে নিন')
       return
     }
+    setPending(true)
+    const timeout = new Promise((_, rej) => setTimeout(() => rej(new Error('সার্ভার সাড়া দিচ্ছে না, আবার চেষ্টা করুন')), 20000))
     try {
-      const res = await register({ full_name, email, password }).unwrap()
+      const res: any = await Promise.race([
+        register({ full_name, email, password }).unwrap(),
+        timeout,
+      ])
       const token = res?.data?.access_token as string | undefined
       if (!token) throw new Error('No token returned')
       const user = decodeJwt(token)
@@ -52,6 +61,8 @@ export function RegisterForm() {
     } catch (err: any) {
       const msg = err?.data?.message || err?.message || 'রেজিস্ট্রেশন ব্যর্থ হয়েছে'
       toast.error(msg)
+    } finally {
+      setPending(false)
     }
   }
 
@@ -136,10 +147,10 @@ export function RegisterForm() {
 
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isBusy}
           className="group relative w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 text-white py-3.5 rounded-xl font-semibold shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center justify-center gap-2 transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
         >
-          {isLoading ? (
+          {isBusy ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
               তৈরি হচ্ছে…

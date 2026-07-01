@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { PageShell, PageHero } from '@/components/layouts/page-shell'
-import { TransportListing } from '@/features/transports/components/transport-listing'
-import { transports } from '@/data/transports'
+import { TransportListingRemote } from '@/features/transports/components/transport-listing-remote'
 
 export const metadata: Metadata = {
   title: 'পরিবহন সেবা',
@@ -23,7 +22,7 @@ export default function TransportationPage() {
         title="সৌদি আরবে স্থল পরিবহন।"
         description="বিমানবন্দর ট্রান্সফার, আন্তঃনগর কোচ, যিয়ারত ট্যুর এবং হারাম শাটল। আলাদাভাবে অথবা আপনার হোটেল ও ফ্লাইটের সাথে বুক করুন।"
       />
-      <TransportListing transports={transports} />
+      <TransportListingRemote />
     </PageShell>
   )
 }

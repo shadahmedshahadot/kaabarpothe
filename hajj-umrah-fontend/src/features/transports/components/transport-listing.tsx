@@ -49,7 +49,11 @@ export function TransportListing({ transports }: { transports: Transport[] }) {
         {filtered.length === 0 && (
           <div className="text-center py-20 text-muted-foreground">
             <Filter className="w-12 h-12 mx-auto mb-4 opacity-40" />
-            <p>আপনার ফিল্টারের সাথে কোনো পরিবহন পরিষেবা মেলেনি।</p>
+            <p>
+              {transports.length === 0
+                ? 'বর্তমানে কোনো পরিবহন পরিষেবা উপলব্ধ নেই।'
+                : 'আপনার ফিল্টারের সাথে কোনো পরিবহন পরিষেবা মেলেনি।'}
+            </p>
           </div>
         )}
       </div>

@@ -1,51 +1,114 @@
-import { CheckCircle2, CreditCard, Clock } from 'lucide-react'
+'use client'
+
+import { CheckCircle2, Clock, Loader2, AlertCircle } from 'lucide-react'
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { Badge } from '@/components/ui/badge'
-import { formatCurrency } from '@/utils/format'
-
-const plan = [
-  { num: 1, amount: 6750, date: '2025-11-20', status: 'paid' },
-  { num: 2, amount: 6750, date: '2025-12-20', status: 'paid' },
-  { num: 3, amount: 6750, date: '2026-01-20', status: 'paid' },
-  { num: 4, amount: 6748, date: '2026-02-20', status: 'paid' },
-]
+import { formatCurrency, formatDate } from '@/utils/format'
+import { useGetPaymentsQuery } from '@/redux/fetchres/payment/paymentApi'
 
 export default function InstallmentsPage() {
+  const { data, isLoading, isError } = useGetPaymentsQuery()
+  const payments = data?.data ?? []
+  const plan = [...payments].sort((a, b) => {
+    const ai = a.installmentNumber ?? 0
+    const bi = b.installmentNumber ?? 0
+    if (ai !== bi) return ai - bi
+    return new Date(a.date).getTime() - new Date(b.date).getTime()
+  })
+
   const total = plan.reduce((s, p) => s + p.amount, 0)
-  const paid = plan.filter(p => p.status === 'paid').reduce((s, p) => s + p.amount, 0)
+  const paid = plan.filter(p => p.status === 'COMPLETED').reduce((s, p) => s + p.amount, 0)
+  const pct = total > 0 ? Math.min(100, (paid / total) * 100) : 0
+
   return (
     <>
-      <PageTitle title="কিস্তি পরিকল্পনা" description="HJ-2026-1001 এর জন্য আপনার নির্ধারিত পেমেন্ট।" />
+      <PageTitle title="কিস্তি পরিকল্পনা" description="আপনার নির্ধারিত পেমেন্ট।" />
 
-      {/* Progress */}
-      <div className="bg-card border border-border rounded-2xl p-6 mb-6">
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-semibold text-foreground">সামগ্রিক অগ্রগতি</p>
-          <p className="text-sm text-muted-foreground">{formatCurrency(paid)} / {formatCurrency(total)}</p>
+      {isLoading && (
+        <div className="flex justify-center py-16">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
-        <div className="h-3 bg-muted rounded-full overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-emerald-400 to-emerald-600" style={{ width: `${(paid / total) * 100}%` }} />
-        </div>
-        <p className="text-xs text-emerald-700 mt-2 font-semibold">১০০% পরিশোধিত — অগ্রিম হজ্জ মোবারক! 🌙</p>
-      </div>
+      )}
 
-      <div className="space-y-3">
-        {plan.map(p => (
-          <div key={p.num} className="bg-card border border-border rounded-2xl p-5 flex items-center gap-4">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${p.status === 'paid' ? 'bg-emerald-500 text-white' : 'bg-muted text-muted-foreground'}`}>
-              {p.status === 'paid' ? <CheckCircle2 className="w-6 h-6" /> : <Clock className="w-6 h-6" />}
+      {isError && (
+        <div className="bg-card border border-border rounded-2xl p-8 text-center text-sm text-rose-500">
+          পেমেন্ট তথ্য লোড করতে ব্যর্থ।
+        </div>
+      )}
+
+      {!isLoading && !isError && plan.length === 0 && (
+        <div className="bg-card border border-border rounded-2xl p-8 text-center text-sm text-muted-foreground">
+          কোনো কিস্তি নেই।
+        </div>
+      )}
+
+      {plan.length > 0 && (
+        <>
+          <div className="bg-card border border-border rounded-2xl p-6 mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-sm font-semibold text-foreground">সামগ্রিক অগ্রগতি</p>
+              <p className="text-sm text-muted-foreground">
+                {formatCurrency(paid)} / {formatCurrency(total)}
+              </p>
             </div>
-            <div className="flex-1">
-              <p className="font-semibold text-foreground">কিস্তি {p.num} / {plan.length}</p>
-              <p className="text-xs text-muted-foreground">নির্ধারিত তারিখ {p.date}</p>
+            <div className="h-3 bg-muted rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-emerald-400 to-emerald-600"
+                style={{ width: `${pct}%` }}
+              />
             </div>
-            <div className="text-right">
-              <p className="font-bold text-foreground text-lg">{formatCurrency(p.amount)}</p>
-              <Badge variant="success" className="text-[10px]">{p.status}</Badge>
-            </div>
+            <p className="text-xs text-emerald-700 mt-2 font-semibold">
+              {Math.round(pct)}% পরিশোধিত
+            </p>
           </div>
-        ))}
-      </div>
+
+          <div className="space-y-3">
+            {plan.map((p, idx) => {
+              const isPaid = p.status === 'COMPLETED'
+              const isFailed = p.status === 'FAILED'
+              return (
+                <div key={p.id} className="bg-card border border-border rounded-2xl p-5 flex items-center gap-4">
+                  <div
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                      isPaid
+                        ? 'bg-emerald-500 text-white'
+                        : isFailed
+                        ? 'bg-rose-500 text-white'
+                        : 'bg-muted text-muted-foreground'
+                    }`}
+                  >
+                    {isPaid ? (
+                      <CheckCircle2 className="w-6 h-6" />
+                    ) : isFailed ? (
+                      <AlertCircle className="w-6 h-6" />
+                    ) : (
+                      <Clock className="w-6 h-6" />
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-foreground">
+                      কিস্তি {p.installmentNumber ?? idx + 1} / {plan.length}
+                    </p>
+                    <p className="text-xs text-muted-foreground">নির্ধারিত তারিখ {formatDate(p.date)}</p>
+                    {p.transactionId && (
+                      <p className="text-[10px] text-muted-foreground mt-0.5">TXN {p.transactionId}</p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-foreground text-lg">{formatCurrency(p.amount)}</p>
+                    <Badge
+                      variant={isPaid ? 'success' : isFailed ? 'danger' : 'warning'}
+                      className="text-[10px]"
+                    >
+                      {p.status}
+                    </Badge>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </>
+      )}
     </>
   )
 }

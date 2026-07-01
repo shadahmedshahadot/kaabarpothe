@@ -15,6 +15,17 @@ import { useChangePasswordMutation } from '@/redux/fetchres/auth/authApi'
 
 const toDateInput = (iso?: string | null) => (iso ? iso.slice(0, 10) : '')
 
+const MIN_DATE = '1900-01-01'
+const MAX_DATE = '2100-12-31'
+
+const isValidDate = (v: string) => {
+  if (!v) return true
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v)
+  if (!m) return false
+  const y = Number(m[1])
+  return y >= 1900 && y <= 2100
+}
+
 export default function PilgrimProfilePage() {
   const { data, isLoading, isError, refetch } = useGetMeQuery()
   const [updateMe, { isLoading: isSaving }] = useUpdateMeMutation()
@@ -67,6 +78,16 @@ export default function PilgrimProfilePage() {
     if (!full_name.trim()) {
       toast.error('পূর্ণ নাম প্রয়োজন')
       return
+    }
+    for (const [label, val] of [
+      ['জন্ম তারিখ', dateOfBirth],
+      ['পাসপোর্ট ইস্যু তারিখ', passportIssueDate],
+      ['পাসপোর্ট মেয়াদ শেষ তারিখ', passportExpiryDate],
+    ] as const) {
+      if (val && !isValidDate(val)) {
+        toast.error(`${label}: বছর ৪ সংখ্যার হতে হবে (১৯০০–২১০০)`)
+        return
+      }
     }
     const fd = new FormData()
     fd.append('full_name', full_name)
@@ -138,6 +159,24 @@ export default function PilgrimProfilePage() {
 
   const u = data.data
 
+  const missingFields = [
+    { key: 'full_name', label: 'পূর্ণ নাম', empty: !full_name.trim() },
+    { key: 'phone', label: 'ফোন', empty: !phone.trim() },
+    { key: 'dateOfBirth', label: 'জন্ম তারিখ', empty: !dateOfBirth },
+    { key: 'gender', label: 'লিঙ্গ', empty: !gender },
+    { key: 'nationality', label: 'জাতীয়তা', empty: !nationality.trim() },
+    { key: 'address', label: 'ঠিকানা', empty: !address.trim() },
+    { key: 'city', label: 'শহর', empty: !city.trim() },
+    { key: 'country', label: 'দেশ', empty: !country.trim() },
+    { key: 'passportNumber', label: 'পাসপোর্ট নম্বর', empty: !passportNumber.trim() },
+    { key: 'passportCountry', label: 'ইস্যুকারী দেশ', empty: !passportCountry.trim() },
+    { key: 'passportIssueDate', label: 'পাসপোর্ট ইস্যু তারিখ', empty: !passportIssueDate },
+    { key: 'passportExpiryDate', label: 'পাসপোর্ট মেয়াদ শেষ', empty: !passportExpiryDate },
+    { key: 'emergencyContactName', label: 'জরুরি যোগাযোগ নাম', empty: !ecName.trim() },
+    { key: 'emergencyContactPhone', label: 'জরুরি যোগাযোগ ফোন', empty: !ecPhone.trim() },
+  ]
+  const missingCount = missingFields.filter(f => f.empty).length
+
   return (
     <>
       <PageTitle
@@ -155,6 +194,13 @@ export default function PilgrimProfilePage() {
           </button>
         }
       />
+
+      {missingCount > 0 && (
+        <div className="mb-4 rounded-xl border border-amber-300 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
+          <p className="font-semibold mb-1">⚠ {missingCount}টি তথ্য অনুপস্থিত</p>
+          <p className="text-xs opacity-90">অনুপস্থিত: {missingFields.filter(f => f.empty).map(f => f.label).join('、')}</p>
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
@@ -174,7 +220,7 @@ export default function PilgrimProfilePage() {
               </div>
               <div>
                 <Label>জন্ম তারিখ</Label>
-                <Input type="date" value={dateOfBirth} onChange={e => setDateOfBirth(e.target.value)} />
+                <Input type="date" min={MIN_DATE} max={MAX_DATE} value={dateOfBirth} onChange={e => setDateOfBirth(e.target.value)} />
               </div>
               <div>
                 <Label>লিঙ্গ</Label>
@@ -215,11 +261,11 @@ export default function PilgrimProfilePage() {
               </div>
               <div>
                 <Label>ইস্যু তারিখ</Label>
-                <Input type="date" value={passportIssueDate} onChange={e => setPassportIssueDate(e.target.value)} />
+                <Input type="date" min={MIN_DATE} max={MAX_DATE} value={passportIssueDate} onChange={e => setPassportIssueDate(e.target.value)} />
               </div>
               <div>
                 <Label>মেয়াদ শেষ তারিখ</Label>
-                <Input type="date" value={passportExpiryDate} onChange={e => setPassportExpiryDate(e.target.value)} />
+                <Input type="date" min={MIN_DATE} max={MAX_DATE} value={passportExpiryDate} onChange={e => setPassportExpiryDate(e.target.value)} />
               </div>
             </div>
           </Card>

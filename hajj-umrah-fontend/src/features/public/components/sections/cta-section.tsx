@@ -61,9 +61,9 @@ export function CTASection() {
                 <span className="text-xs opacity-80">বুক →</span>
               </Link>
 
-              <a href="tel:+8801700000000" className="inline-flex items-center justify-between gap-3 text-white/80 px-6 py-3 rounded-2xl hover:text-white transition-colors">
-                <span className="flex items-center gap-3"><Phone className="w-4 h-4" /> +৮৮০ ১৭০০-০০০০০০</span>
-                <span className="text-xs">২৪/৭</span>
+              <a href="tel:+8801700000000" className="inline-flex items-center justify-between gap-3 bg-white/5 backdrop-blur text-white/90 border-2 border-amber-400/60 px-6 py-3 rounded-2xl font-semibold shadow-lg shadow-amber-400/20 hover:bg-amber-400/10 hover:border-amber-400 hover:text-white transition-colors">
+                <span className="flex items-center gap-3"><Phone className="w-4 h-4 text-amber-400" /> +৮৮০ ১৭০০-০০০০০০</span>
+                <span className="text-xs bg-amber-400/20 text-amber-300 px-2 py-1 rounded-full">২৪/৭</span>
               </a>
             </div>
           </div>

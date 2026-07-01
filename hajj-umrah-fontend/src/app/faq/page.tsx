@@ -2,21 +2,33 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search } from 'lucide-react'
+import { Loader2, Search } from 'lucide-react'
 import { PageShell, PageHero } from '@/components/layouts/page-shell'
 import { Accordion, AccordionItem } from '@/components/ui/accordion'
 import { Input } from '@/components/ui/input'
-import { faqs, faqCategories } from '@/data/faqs'
+import { faqs as fallbackFaqs, faqCategories as fallbackCategories } from '@/data/faqs'
+import { useGetFaqsQuery, useGetFaqCategoriesQuery } from '@/redux/fetchres/faq/faqApi'
 import { SITE } from '@/constants/site'
 
 export default function FAQPage() {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<string>('সব')
 
-  const filtered = faqs.filter(f =>
-    (category === 'সব' || f.category === category) &&
-    (f.question.toLowerCase().includes(search.toLowerCase()) || f.answer.toLowerCase().includes(search.toLowerCase()))
-  )
+  const { data: faqResp, isLoading } = useGetFaqsQuery()
+  const { data: catResp } = useGetFaqCategoriesQuery()
+  const faqs = faqResp?.data?.length ? faqResp.data : fallbackFaqs
+  const faqCategories = catResp?.data?.length ? catResp.data : fallbackCategories
+
+  const q = search.trim().toLowerCase()
+  const filtered = faqs.filter(f => {
+    if (category !== 'সব' && f.category !== category) return false
+    if (!q) return true
+    return (
+      f.question.toLowerCase().includes(q) ||
+      f.answer.toLowerCase().includes(q) ||
+      f.category.toLowerCase().includes(q)
+    )
+  })
 
   return (
     <PageShell>
@@ -61,7 +73,9 @@ export default function FAQPage() {
             ))}
           </motion.div>
 
-          {filtered.length === 0 ? (
+          {isLoading ? (
+            <div className="flex justify-center py-12"><Loader2 className="w-8 h-8 animate-spin text-primary" /></div>
+          ) : filtered.length === 0 ? (
             <p className="text-center text-muted-foreground py-12">আপনার অনুসন্ধানের সাথে কোন প্রশ্নোত্তর মিলেনি।</p>
           ) : (
             <div className="bg-card border border-border rounded-3xl p-6 sm:p-10">
