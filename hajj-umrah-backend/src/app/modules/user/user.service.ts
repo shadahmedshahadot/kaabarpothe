@@ -16,9 +16,24 @@ type ListQuery = {
   search?: string;
 };
 
+const MIN_YEAR = 1900;
+const MAX_YEAR = 2100;
+
+const parseSafeDate = (raw: any, field: string): Date => {
+  const d = new Date(raw);
+  if (isNaN(d.getTime())) {
+    throw new AppError(httpStatus.BAD_REQUEST, `${field}: অবৈধ তারিখ`);
+  }
+  const y = d.getUTCFullYear();
+  if (y < MIN_YEAR || y > MAX_YEAR) {
+    throw new AppError(httpStatus.BAD_REQUEST, `${field}: বছর ${MIN_YEAR}–${MAX_YEAR} সীমার মধ্যে হতে হবে`);
+  }
+  return d;
+};
+
 const sanitizeDates = (input: any) => {
   for (const f of ['dateOfBirth', 'passportIssueDate', 'passportExpiryDate']) {
-    if (input[f]) input[f] = new Date(input[f]);
+    if (input[f]) input[f] = parseSafeDate(input[f], f);
   }
   return input;
 };
