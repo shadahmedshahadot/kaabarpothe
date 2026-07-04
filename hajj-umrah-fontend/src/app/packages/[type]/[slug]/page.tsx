@@ -37,7 +37,7 @@ export default async function PackagePage({
     offers: {
       '@type': 'Offer',
       price: finalPrice,
-      priceCurrency: 'USD',
+      priceCurrency: 'BDT',
       availability:
         pkg.availability === 'soldout'
           ? 'https://schema.org/SoldOut'
@@ -71,7 +71,7 @@ export default async function PackagePage({
     offers: {
       '@type': 'Offer',
       price: finalPrice,
-      priceCurrency: 'USD',
+      priceCurrency: 'BDT',
       availability:
         pkg.availability === 'soldout'
           ? 'https://schema.org/SoldOut'

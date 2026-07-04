@@ -1,5 +1,7 @@
-export const formatCurrency = (amount: number, currency = 'USD') =>
-  new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0 }).format(amount)
+export const formatCurrency = (amount: number, currency = 'BDT') => {
+  if (currency === 'BDT') return `৳${new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(amount)}`
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0 }).format(amount)
+}
 
 export const formatDate = (date: string | Date, options?: Intl.DateTimeFormatOptions) =>
   new Date(date).toLocaleDateString('en-US', options ?? { year: 'numeric', month: 'short', day: 'numeric' })

@@ -45,12 +45,12 @@ export default async function HotelPage({
             bestRating: 5,
           }
         : undefined,
-    priceRange: `$${hotel.pricePerNight}`,
+    priceRange: `৳${hotel.pricePerNight}`,
     makesOffer: (hotel.roomTypes ?? []).map(r => ({
       '@type': 'Offer',
       name: r.name,
       price: r.pricePerNight,
-      priceCurrency: 'USD',
+      priceCurrency: 'BDT',
       availability: r.available > 0 ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
     })),
   }

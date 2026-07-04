@@ -56,7 +56,8 @@ export default function AdminSettingsPage() {
               </div>
               <div>
                 <Label>মুদ্রা</Label>
-                <Select defaultValue="USD">
+                <Select defaultValue="BDT">
+                  <option value="BDT">BDT (৳)</option>
                   <option value="USD">USD ($)</option>
                   <option value="GBP">GBP (£)</option>
                   <option value="EUR">EUR (€)</option>

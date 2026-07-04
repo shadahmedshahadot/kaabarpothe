@@ -376,7 +376,7 @@ export function FlightForm({ existing }: { existing?: FlightDto }) {
           <Card title="মূল্য">
             <div className="grid sm:grid-cols-3 gap-4">
               <div>
-                <Label>মূল্য (USD)</Label>
+                <Label>মূল্য (৳)</Label>
                 <Input type="number" value={price} onChange={e => setPrice(e.target.value)} placeholder="745" />
               </div>
               <div>

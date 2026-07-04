@@ -110,10 +110,10 @@ const hajjServiceLd = {
     '@type': 'OfferCatalog',
     name: 'হজ্জ প্যাকেজ স্তর',
     itemListElement: [
-      { '@type': 'Offer', name: 'Economy Hajj Package', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'Standard Hajj Package', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'Premium Hajj Package', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'VIP Hajj Package', priceCurrency: 'USD' },
+      { '@type': 'Offer', name: 'Economy Hajj Package', priceCurrency: 'BDT' },
+      { '@type': 'Offer', name: 'Standard Hajj Package', priceCurrency: 'BDT' },
+      { '@type': 'Offer', name: 'Premium Hajj Package', priceCurrency: 'BDT' },
+      { '@type': 'Offer', name: 'VIP Hajj Package', priceCurrency: 'BDT' },
     ],
   },
 }
@@ -133,10 +133,10 @@ const umrahServiceLd = {
     '@type': 'OfferCatalog',
     name: 'উমরাহ প্যাকেজ স্তর',
     itemListElement: [
-      { '@type': 'Offer', name: 'Budget Umrah Package', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'Economy Umrah Package', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'Premium Umrah Package', priceCurrency: 'USD' },
-      { '@type': 'Offer', name: 'Luxury Umrah Package', priceCurrency: 'USD' },
+      { '@type': 'Offer', name: 'Budget Umrah Package', priceCurrency: 'BDT' },
+      { '@type': 'Offer', name: 'Economy Umrah Package', priceCurrency: 'BDT' },
+      { '@type': 'Offer', name: 'Premium Umrah Package', priceCurrency: 'BDT' },
+      { '@type': 'Offer', name: 'Luxury Umrah Package', priceCurrency: 'BDT' },
     ],
   },
 }

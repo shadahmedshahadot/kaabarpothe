@@ -283,7 +283,7 @@ export function HotelForm({ existing }: { existing?: HotelDto }) {
                 <Input type="number" value={totalRooms} onChange={e => setTotalRooms(e.target.value)} placeholder="220" />
               </div>
               <div>
-                <Label>প্রতি রাত (USD)</Label>
+                <Label>প্রতি রাত (৳)</Label>
                 <Input type="number" value={pricePerNight} onChange={e => setPricePerNight(e.target.value)} placeholder="165" />
               </div>
             </div>

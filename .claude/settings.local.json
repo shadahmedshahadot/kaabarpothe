@@ -86,7 +86,15 @@
       "Bash(awk 'NR<=98 || NR>=329' /c/Users/mdrub/Desktop/hajj-umrah/hajj-umrah-fontend/src/data/packages.ts)",
       "Bash(mv /tmp/pkg.ts /c/Users/mdrub/Desktop/hajj-umrah/hajj-umrah-fontend/src/data/packages.ts)",
       "Bash(Select-Object -First 80)",
-      "PowerShell(cd C:/Users/mdrub/Desktop/hajj-umrah/hajj-umrah-fontend; npx tsc --noEmit; echo \"EXIT:$LASTEXITCODE\")"
+      "PowerShell(cd C:/Users/mdrub/Desktop/hajj-umrah/hajj-umrah-fontend; npx tsc --noEmit; echo \"EXIT:$LASTEXITCODE\")",
+      "WebFetch(domain:docs.google.com)",
+      "Bash(grep -E \"\\\\.\\(tsx|ts\\)$\")",
+      "Bash(grep -E \"\\\\.\\(tsx|ts|jsx\\)$\")",
+      "Bash(xargs grep -l \"Mohammad\")",
+      "PowerShell(cd G:\\\\hajj-umrah\\\\hajj-umrah-fontend; $out = npx tsc --noEmit 2>&1; Write-Output \"EXIT=$LASTEXITCODE\"; Write-Output $out)",
+      "PowerShell(cd G:\\\\hajj-umrah\\\\hajj-umrah-backend; $out = npx tsc --noEmit 2>&1; Write-Output \"EXIT=$LASTEXITCODE\"; Write-Output $out)",
+      "PowerShell(cd G:\\\\hajj-umrah\\\\hajj-umrah-backend; $out = npx prisma validate 2>&1; Write-Output \"EXIT=$LASTEXITCODE\"; Write-Output $out)",
+      "PowerShell(cd G:\\\\hajj-umrah\\\\hajj-umrah-backend; $out = npx prisma migrate dev --name booking_optional_package 2>&1; Write-Output \"EXIT=$LASTEXITCODE\"; Write-Output $out)"
     ]
   }
 }

@@ -1,9 +1,9 @@
-import { Download, FileSpreadsheet, FileText, BarChart3, TrendingUp, Users, DollarSign, Plane } from 'lucide-react'
+import { Download, FileSpreadsheet, FileText, BarChart3, TrendingUp, Users, Banknote, Plane } from 'lucide-react'
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { BarChart, LineChart } from '@/features/admin/components/chart'
 
 const reportTypes = [
-  { Icon: DollarSign, title: 'রাজস্ব রিপোর্ট', desc: 'প্যাকেজ, স্তর অনুসারে রাজস্বের মাসিক বিভাজন।', color: 'emerald' },
+  { Icon: Banknote, title: 'রাজস্ব রিপোর্ট', desc: 'প্যাকেজ, স্তর অনুসারে রাজস্বের মাসিক বিভাজন।', color: 'emerald' },
   { Icon: Plane, title: 'বুকিং রিপোর্ট', desc: 'অবস্থা, উৎস এবং সময়কাল অনুসারে সমস্ত বুকিং।', color: 'sky' },
   { Icon: Users, title: 'গ্রুপ লিডার রিপোর্ট', desc: 'প্রতি গ্রুপ লিডারের কর্মক্ষমতা এবং হাজীর সন্তুষ্টি রেটিং।', color: 'violet' },
   { Icon: Users, title: 'হাজী রিপোর্ট', desc: 'জনসংখ্যাতাত্ত্বিক তথ্য, ধরে রাখা, পুনরাবৃত্ত বুকিং।', color: 'amber' },

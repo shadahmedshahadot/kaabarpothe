@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ type: str
 
   const name = pkg?.name ?? fallbackName
   const finalPrice = pkg ? Math.max(0, (pkg.price ?? 0) - (pkg.discount ?? 0)) : null
-  const priceFragment = finalPrice ? ` $${finalPrice.toLocaleString('en-US')} থেকে।` : ''
+  const priceFragment = finalPrice ? ` ৳${finalPrice.toLocaleString('en-US')} থেকে।` : ''
   const description =
     pkg?.shortDescription ??
     pkg?.description?.slice(0, 160) ??

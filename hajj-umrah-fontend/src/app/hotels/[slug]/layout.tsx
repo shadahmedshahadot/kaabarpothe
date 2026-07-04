@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const name = hotel?.name ?? fallbackName
   const cityBn = hotel?.city === 'MAKKAH' ? 'মক্কা' : hotel?.city === 'MADINAH' ? 'মদিনা' : ''
   const stars = hotel?.category ? `${hotel.category}-তারকা ` : ''
-  const priceFragment = hotel?.pricePerNight ? ` প্রতি রাত $${hotel.pricePerNight}।` : ''
+  const priceFragment = hotel?.pricePerNight ? ` প্রতি রাত ৳${hotel.pricePerNight}।` : ''
   const description =
     hotel?.description?.slice(0, 160) ||
     `${stars}হোটেল ${name}${cityBn ? `, ${cityBn}` : ''}। হারামের কাছের প্রিমিয়াম থাকা ব্যবস্থা।${priceFragment}`

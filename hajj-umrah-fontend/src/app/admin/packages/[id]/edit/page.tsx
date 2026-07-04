@@ -349,11 +349,11 @@ export default function EditPackagePage({
           <Card title="মূল্য নির্ধারণ">
             <div className="grid sm:grid-cols-3 gap-4">
               <div>
-                <Label>মৌলিক মূল্য (USD)</Label>
+                <Label>মৌলিক মূল্য (৳)</Label>
                 <Input type="number" value={price} onChange={e => setPrice(e.target.value)} />
               </div>
               <div>
-                <Label>ছাড় (USD)</Label>
+                <Label>ছাড় (৳)</Label>
                 <Input type="number" value={discount} onChange={e => setDiscount(e.target.value)} />
               </div>
               <div>

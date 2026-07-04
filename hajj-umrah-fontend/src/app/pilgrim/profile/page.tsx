@@ -302,7 +302,7 @@ export default function PilgrimProfilePage() {
               </div>
               <div className="bg-muted/30 rounded-lg p-2">
                 <p className="text-muted-foreground">মোট</p>
-                <p className="font-bold text-foreground">${u.totalSpent.toLocaleString()}</p>
+                <p className="font-bold text-foreground">৳{u.totalSpent.toLocaleString()}</p>
               </div>
             </div>
           </div>

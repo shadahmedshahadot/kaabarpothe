@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? `${flight.airlineName ?? 'ফ্লাইট'} ${flight.flightNumber ?? ''} — ${flight.departureCity ?? ''} → ${flight.arrivalCity ?? ''}`.trim()
     : `ফ্লাইট — ${fallbackName}`
 
-  const priceFragment = flight?.price ? ` $${flight.price} থেকে।` : ''
+  const priceFragment = flight?.price ? ` ৳${flight.price} থেকে।` : ''
   const description = flight
     ? `${flight.departureCity ?? ''} (${flight.departureAirport ?? ''}) → ${flight.arrivalCity ?? ''} (${flight.arrivalAirport ?? ''})। ${flight.totalDuration ?? ''} ${flight.cabinClass ?? ''}।${priceFragment}`.trim()
     : 'হজ্জ ও উমরাহ ফ্লাইট বিস্তারিত — মূল্য, সময়সূচী ও বুকিং।'

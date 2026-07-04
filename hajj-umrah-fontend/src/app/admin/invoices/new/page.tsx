@@ -86,7 +86,7 @@ export default function AdminInvoiceNewPage() {
         </Field>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          <Field label="পরিমাণ (USD) *">
+          <Field label="পরিমাণ (৳) *">
             <input
               type="number"
               min={1}

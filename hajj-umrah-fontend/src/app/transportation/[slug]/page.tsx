@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!transport) return { title: 'সেবা পাওয়া যায়নি' }
   return {
     title: transport.name,
-    description: `${transport.routeDetails} $${transport.price} ${transport.pricingUnit} থেকে।`,
+    description: `${transport.routeDetails} ৳${transport.price} ${transport.pricingUnit} থেকে।`,
     alternates: { canonical: `/transportation/${transport.slug}` },
     openGraph: {
       title: `${transport.name} | কাবার পথে`,
@@ -44,7 +44,7 @@ export default async function TransportationDetailPage({ params }: { params: Pro
     offers: {
       '@type': 'Offer',
       price: transport.price,
-      priceCurrency: 'USD',
+      priceCurrency: 'BDT',
       url: `${SITE.url}/transportation/${transport.slug}`,
       availability:
         transport.availability === 'soldout'

@@ -40,7 +40,7 @@ export default async function FlightDetailPage({
     offers: {
       '@type': 'Offer',
       price: flight.price,
-      priceCurrency: 'USD',
+      priceCurrency: 'BDT',
       availability:
         flight.bookingStatus === 'soldout'
           ? 'https://schema.org/SoldOut'
