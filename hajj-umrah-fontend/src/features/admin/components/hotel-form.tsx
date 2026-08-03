@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { Input, Textarea, Select, Label } from '@/components/ui/input'
+import { ReachKeyboard } from '@/components/ui/reach-keyboard'
 import { CoverUpload, GalleryUpload } from '@/components/common'
 import {
   useCreateHotelMutation,
@@ -261,7 +262,7 @@ export function HotelForm({ existing }: { existing?: HotelDto }) {
             </div>
             <div>
               <Label>বিবরণ</Label>
-              <Textarea rows={5} value={description} onChange={e => setDescription(e.target.value)} />
+              <ReachKeyboard initialValue={description} onChange={setDescription} placeholder="হোটেলের বিবরণ…" />
             </div>
           </Card>
 
@@ -293,7 +294,7 @@ export function HotelForm({ existing }: { existing?: HotelDto }) {
             </div>
             <div>
               <Label>সুবিধা (প্রতি লাইনে একটি)</Label>
-              <Textarea rows={5} value={facilities} onChange={e => setFacilities(e.target.value)} placeholder="ফ্রি ওয়াই-ফাই&#10;২৪/৭ রিসেপশন&#10;হালাল রেস্তোরাঁ" />
+              <ReachKeyboard initialValue={facilities} onChange={setFacilities} placeholder="ফ্রি ওয়াই-ফাই, ২৪/৭ রিসেপশন, হালাল রেস্তোরাঁ…" />
             </div>
           </Card>
 
@@ -365,7 +366,7 @@ export function HotelForm({ existing }: { existing?: HotelDto }) {
           </Card>
 
           <Card title="অতিরিক্ত নোট">
-            <Textarea rows={3} value={notes} onChange={e => setNotes(e.target.value)} />
+            <ReachKeyboard initialValue={notes} onChange={setNotes} placeholder="নোট…" />
           </Card>
         </div>
 

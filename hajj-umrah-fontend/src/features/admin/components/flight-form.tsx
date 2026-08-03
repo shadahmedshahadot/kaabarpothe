@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { Input, Textarea, Select, Label } from '@/components/ui/input'
+import { ReachKeyboard } from '@/components/ui/reach-keyboard'
 import {
   useCreateFlightMutation,
   useUpdateFlightMutation,
@@ -391,7 +392,7 @@ export function FlightForm({ existing }: { existing?: FlightDto }) {
           </Card>
 
           <Card title="অতিরিক্ত নোট">
-            <Textarea rows={3} value={notes} onChange={e => setNotes(e.target.value)} placeholder="বিশেষ মন্তব্য…" />
+            <ReachKeyboard initialValue={notes} onChange={setNotes} placeholder="বিশেষ মন্তব্য…" />
           </Card>
         </div>
 

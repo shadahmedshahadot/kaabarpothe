@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { Input, Textarea, Select, Label } from '@/components/ui/input'
+import { ReachKeyboard } from '@/components/ui/reach-keyboard'
 import { CoverUpload, GalleryUpload } from '@/components/common'
 import { HotelSelector } from '@/features/admin/components/hotel-selector'
 import { useCreatePackageMutation } from '@/redux/fetchres/package/packageApi'
@@ -295,7 +296,7 @@ export default function NewPackagePage() {
             </div>
             <div>
               <Label>বিস্তারিত বিবরণ</Label>
-              <Textarea rows={6} value={description} onChange={e => setDescription(e.target.value)} placeholder="সম্পূর্ণ প্যাকেজের বিবরণ…" />
+              <ReachKeyboard initialValue={description} onChange={setDescription} placeholder="সম্পূর্ণ প্যাকেজের বিবরণ…" />
             </div>
           </Card>
 
@@ -442,10 +443,9 @@ export default function NewPackagePage() {
                       <X className="w-4 h-4" />
                     </button>
                   </div>
-                  <Textarea
-                    rows={2}
-                    value={d.description}
-                    onChange={e => updateItineraryDay(idx, { description: e.target.value })}
+                  <ReachKeyboard
+                    initialValue={d.description}
+                    onChange={val => updateItineraryDay(idx, { description: val })}
                     placeholder="দিনের বিবরণ…"
                   />
                   <Textarea

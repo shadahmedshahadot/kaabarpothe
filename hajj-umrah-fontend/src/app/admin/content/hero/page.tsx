@@ -6,6 +6,7 @@ import { Save, RotateCcw, Plus, Trash2, ArrowLeft, Eye, CheckCircle2, Play, Spar
 import { motion, AnimatePresence } from 'framer-motion'
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { Input, Textarea, Label } from '@/components/ui/input'
+import { ReachKeyboard } from '@/components/ui/reach-keyboard'
 import { Badge } from '@/components/ui/badge'
 import { useHeroContent } from '@/hooks/use-hero-content'
 import { DEFAULT_HERO_CONTENT, type HeroContent } from '@/data/content/hero'
@@ -117,10 +118,10 @@ export default function HeroContentEditor() {
             </div>
             <div>
               <Label>বিবরণ</Label>
-              <Textarea
-                rows={4}
-                value={draft.description}
-                onChange={e => setField('description', e.target.value)}
+              <ReachKeyboard
+                initialValue={draft.description}
+                onChange={val => setField('description', val)}
+                placeholder="হিরো বিবরণ…"
               />
             </div>
           </Card>
