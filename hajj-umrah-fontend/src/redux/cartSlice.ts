@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-export type CartItemKind = 'package' | 'flight' | 'hotel' | 'transport'
+export type CartItemKind = 'package' | 'transport'
 
 export interface CartItem {
   id: string

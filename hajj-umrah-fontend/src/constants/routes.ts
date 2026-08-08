@@ -13,15 +13,6 @@ export const ROUTES = {
     umrah: '/packages/umrah',
     detail: (type: string, slug: string) => `/packages/${type}/${slug}`,
   },
-  flights: {
-    root: '/flights',
-    detail: (slug: string) => `/flights/${slug}`,
-    book: (slug: string) => `/flights/${slug}/book`,
-  },
-  hotels: {
-    root: '/hotels',
-    detail: (slug: string) => `/hotels/${slug}`,
-  },
   transportation: {
     root: '/transportation',
     detail: (slug: string) => `/transportation/${slug}`,
@@ -34,12 +25,7 @@ export const ROUTES = {
   admin: {
     root: '/admin',
     packages: '/admin/packages',
-    flights: '/admin/flights',
-    flightNew: '/admin/flights/new',
-    flightDetail: (id: string) => `/admin/flights/${id}`,
-    hotels: '/admin/hotels',
-    hotelNew: '/admin/hotels/new',
-    hotelEdit: (id: string) => `/admin/hotels/${id}/edit`,
+    transports: '/admin/transports',
     pilgrims: '/admin/pilgrims',
     bookings: '/admin/bookings',
     bookingDetail: (id: string) => `/admin/bookings/${id}`,
@@ -63,8 +49,6 @@ export const ROUTES = {
     root: '/pilgrim',
     bookings: '/pilgrim/bookings',
     bookingDetail: (code: string) => `/pilgrim/bookings/${code}`,
-    flight: '/pilgrim/flight',
-    hotel: '/pilgrim/hotel',
     payments: '/pilgrim/payments',
     installments: '/pilgrim/installments',
     documents: '/pilgrim/documents',

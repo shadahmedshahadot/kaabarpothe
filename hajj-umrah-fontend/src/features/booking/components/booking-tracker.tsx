@@ -9,11 +9,9 @@ import {
   FileText,
   Loader2,
   MessageCircle,
-  Plane,
   Send,
   Upload,
   UserCheck,
-  Hotel as HotelIcon,
   Bus,
   AlertCircle,
 } from 'lucide-react'
@@ -305,8 +303,6 @@ function SummaryCard({ booking }: { booking: BookingDto }) {
       <h2 className="font-bold text-foreground mb-3">সারাংশ</h2>
       <dl className="space-y-2 text-sm">
         <Row label="প্যাকেজ" value={booking.packageName} icon={CheckCircle2} />
-        {booking.flightId && <Row label="ফ্লাইট" value="বরাদ্দ হয়েছে" icon={Plane} />}
-        {booking.hotelId && <Row label="হোটেল" value="বরাদ্দ হয়েছে" icon={HotelIcon} />}
         {booking.transportId && <Row label="পরিবহন" value="বরাদ্দ হয়েছে" icon={Bus} />}
         <Row label="পরিমাণ" value={`৳ ${booking.totalAmount.toLocaleString()}`} />
         <Row label="পরিশোধিত" value={`৳ ${booking.paidAmount.toLocaleString()}`} />

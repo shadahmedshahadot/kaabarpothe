@@ -20,8 +20,6 @@ const BookingStatusEnum = z.enum([
   'WAITING_FOR_PAYMENT',
   'PAYMENT_RECEIVED',
   'VISA_PROCESSING',
-  'FLIGHT_RESERVED',
-  'HOTEL_RESERVED',
   'TRANSPORTATION_CONFIRMED',
   'CONFIRMED',
   'IN_PROGRESS',
@@ -34,8 +32,6 @@ const CreateBookingSchema = z.object({
   body: z.object({
     bookingCode: z.string().optional(),
     packageId: z.string().optional().nullable(),
-    flightId: z.string().optional().nullable(),
-    hotelId: z.string().optional().nullable(),
     transportId: z.string().optional().nullable(),
     pilgrimName: z.string(),
     pilgrimEmail: z.string().email(),
@@ -60,8 +56,8 @@ const CreateBookingSchema = z.object({
         ]),
       )
       .optional(),
-  }).refine(v => Boolean(v.packageId) || Boolean(v.flightId), {
-    message: 'Either packageId or flightId is required',
+  }).refine(v => Boolean(v.packageId), {
+    message: 'packageId is required',
     path: ['packageId'],
   }),
 });
@@ -86,8 +82,6 @@ const UpdateBookingSchema = z.object({
     notes: z.string().optional().nullable(),
     adminNotes: z.string().optional().nullable(),
     specialRequests: z.string().optional().nullable(),
-    flightId: z.string().optional().nullable(),
-    hotelId: z.string().optional().nullable(),
     transportId: z.string().optional().nullable(),
     assignedConsultantId: z.string().optional().nullable(),
     travelers: z.array(Traveler).optional(),
@@ -150,8 +144,6 @@ const UpdateNotesSchema = z.object({
 
 const AssignEntitySchema = z.object({
   body: z.object({
-    flightId: z.string().optional(),
-    hotelId: z.string().optional(),
     transportId: z.string().optional(),
   }),
 });

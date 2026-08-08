@@ -1,4 +1,4 @@
-import { LayoutDashboard, UserCircle, Calendar, CreditCard, ClipboardList, FileCheck, Plane, Hotel, FileText, Receipt, Bell } from 'lucide-react'
+import { LayoutDashboard, UserCircle, Calendar, CreditCard, ClipboardList, FileCheck, FileText, Receipt, Bell } from 'lucide-react'
 import type { NavGroup } from '@/components/layouts/dashboard-shell'
 import { ROUTES } from '@/constants'
 
@@ -9,8 +9,6 @@ export const PILGRIM_NAV_GROUPS: NavGroup[] = [
     items: [
       { label: 'My Bookings', href: ROUTES.pilgrim.bookings, Icon: Calendar },
       { label: 'Visa Status', href: ROUTES.pilgrim.visa, Icon: FileCheck },
-      { label: 'Flight Details', href: ROUTES.pilgrim.flight, Icon: Plane },
-      { label: 'Hotel Details', href: ROUTES.pilgrim.hotel, Icon: Hotel },
     ],
   },
   {

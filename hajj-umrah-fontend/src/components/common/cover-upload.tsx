@@ -11,8 +11,6 @@ export interface CoverUploadProps {
   onChange: (url: string) => void
   folder?:
     | 'packages'
-    | 'hotels'
-    | 'flights'
     | 'transports'
     | 'blogs'
     | 'avatars'

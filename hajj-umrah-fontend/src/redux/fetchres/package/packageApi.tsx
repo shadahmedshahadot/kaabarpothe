@@ -34,18 +34,6 @@ export interface PackageDto {
   reviewsCount: number
   bookingsCount: number
   featured: boolean
-  hotelMakkahName: string
-  hotelMakkahStars: number
-  hotelMakkahDistance: string
-  hotelMakkahImage: string
-  hotelMadinahName: string
-  hotelMadinahStars: number
-  hotelMadinahDistance: string
-  hotelMadinahImage: string
-  flightAirline: string
-  flightDeparture: string
-  flightArrival: string
-  flightClass: string
   meals: string
   transport: string
   ziyarah: string[]

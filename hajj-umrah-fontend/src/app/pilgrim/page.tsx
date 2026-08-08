@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Calendar, Plane, Hotel, FileCheck, CreditCard, Download, MessageCircle, MapPin, ArrowRight } from 'lucide-react'
+import { Calendar, FileCheck, CreditCard, Download, MessageCircle, MapPin, ArrowRight } from 'lucide-react'
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { Badge } from '@/components/ui/badge'
 import { formatCurrency, formatDate } from '@/utils/format'
@@ -45,9 +45,7 @@ export default function PilgrimDashboardPage() {
       </div>
 
       {/* Quick actions */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <Action Icon={Plane} title="ফ্লাইট" desc="JFK থেকে সরাসরি" color="from-sky-400 to-blue-500" href="/pilgrim/flight" />
-        <Action Icon={Hotel} title="হোটেল" desc="কনরাড মক্কা" color="from-amber-400 to-orange-500" href="/pilgrim/hotel" />
+      <div className="grid grid-cols-2 gap-4 mb-8">
         <Action Icon={FileCheck} title="ভিসা" desc="অনুমোদিত ✓" color="from-emerald-400 to-teal-500" href="/pilgrim/visa" />
         <Action Icon={CreditCard} title="পেমেন্ট" desc="সম্পূর্ণ পরিশোধিত ✓" color="from-violet-400 to-purple-500" href="/pilgrim/payments" />
       </div>

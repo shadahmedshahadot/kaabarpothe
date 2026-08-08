@@ -1,6 +1,6 @@
 'use client'
 
-import { Bell, FileCheck, Plane, CreditCard, Calendar, Loader2, Trash2 } from 'lucide-react'
+import { Bell, FileCheck, CreditCard, Calendar, Loader2, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { formatDate } from '@/utils/format'
@@ -18,9 +18,6 @@ const iconFor = (type: NotificationType) => {
     case 'DOCUMENTS_UPLOADED':
     case 'DOCUMENTS_REQUESTED':
       return { Icon: FileCheck, color: 'emerald' as const }
-    case 'FLIGHT_ASSIGNED':
-      return { Icon: Plane, color: 'sky' as const }
-    case 'HOTEL_ASSIGNED':
     case 'TRANSPORTATION_ASSIGNED':
       return { Icon: Calendar, color: 'amber' as const }
     case 'PAYMENT_APPROVED':

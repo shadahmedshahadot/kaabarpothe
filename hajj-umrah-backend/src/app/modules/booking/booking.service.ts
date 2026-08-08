@@ -32,7 +32,7 @@ const sanitizeTravelers = (travelers: any[]) =>
   }));
 
 const generateBookingCode = (type: string | null | undefined) => {
-  const prefix = type === 'HAJJ' ? 'HJ' : type === 'UMRAH' ? 'UM' : 'FL';
+  const prefix = type === 'HAJJ' ? 'HJ' : type === 'UMRAH' ? 'UM' : 'BK';
   return `${prefix}-${new Date().getFullYear()}-${Math.floor(Math.random() * 9000 + 1000)}`;
 };
 
@@ -43,8 +43,6 @@ const statusToNotificationType: Record<string, NotificationType> = {
   WAITING_FOR_PAYMENT: NotificationType.STATUS_UPDATED,
   PAYMENT_RECEIVED: NotificationType.PAYMENT_APPROVED,
   VISA_PROCESSING: NotificationType.VISA_UPDATE,
-  FLIGHT_RESERVED: NotificationType.FLIGHT_ASSIGNED,
-  HOTEL_RESERVED: NotificationType.HOTEL_ASSIGNED,
   TRANSPORTATION_CONFIRMED: NotificationType.TRANSPORTATION_ASSIGNED,
   CONFIRMED: NotificationType.BOOKING_CONFIRMED,
   COMPLETED: NotificationType.BOOKING_COMPLETED,
@@ -60,8 +58,6 @@ const statusLabel: Record<string, string> = {
   WAITING_FOR_PAYMENT: 'Waiting for Payment',
   PAYMENT_RECEIVED: 'Payment Received',
   VISA_PROCESSING: 'Visa Processing',
-  FLIGHT_RESERVED: 'Flight Reserved',
-  HOTEL_RESERVED: 'Hotel Reserved',
   TRANSPORTATION_CONFIRMED: 'Transportation Confirmed',
   CONFIRMED: 'Confirmed',
   IN_PROGRESS: 'In Progress',
@@ -137,42 +133,28 @@ const notifyTx = async (
 };
 
 const CreateBooking = async (payload: any, user?: JwtPayload) => {
-  if (!payload.packageId && !payload.flightId) {
-    throw new AppError(httpStatus.BAD_REQUEST, 'Either packageId or flightId is required');
+  if (!payload.packageId) {
+    throw new AppError(httpStatus.BAD_REQUEST, 'packageId is required');
   }
 
-  let pkg: { id: string; name: string; type: any } | null = null;
-  if (payload.packageId) {
-    const found = await prisma.package.findFirst({ where: { id: payload.packageId, isDeleted: false } });
-    if (!found) throw new AppError(httpStatus.NOT_FOUND, 'Package not found');
-    pkg = found;
-  }
+  const pkg = await prisma.package.findFirst({ where: { id: payload.packageId, isDeleted: false } });
+  if (!pkg) throw new AppError(httpStatus.NOT_FOUND, 'Package not found');
 
-  let flight: { id: string; airlineName: string; flightNumber: string; departureDate: Date } | null = null;
-  if (payload.flightId) {
-    const found = await prisma.flight.findFirst({ where: { id: payload.flightId, isDeleted: false } });
-    if (!found) throw new AppError(httpStatus.NOT_FOUND, 'Flight not found');
-    flight = found;
-  }
-  if (payload.hotelId) {
-    const hotel = await prisma.hotel.findFirst({ where: { id: payload.hotelId, isDeleted: false } });
-    if (!hotel) throw new AppError(httpStatus.NOT_FOUND, 'Hotel not found');
-  }
   if (payload.transportId) {
     const transport = await prisma.transport.findFirst({ where: { id: payload.transportId, isDeleted: false } });
     if (!transport) throw new AppError(httpStatus.NOT_FOUND, 'Transport not found');
   }
 
   const { travelers, requestedDocuments, ...rest } = sanitizeDates(payload);
-  const bookingCode = rest.bookingCode || generateBookingCode(pkg?.type);
+  const bookingCode = rest.bookingCode || generateBookingCode(pkg.type);
 
   return prisma.$transaction(async tx => {
     const booking = await tx.booking.create({
       data: {
         ...rest,
         bookingCode,
-        packageName: pkg?.name ?? (flight ? `${flight.airlineName} ${flight.flightNumber}` : null),
-        packageType: pkg?.type ?? null,
+        packageName: pkg.name,
+        packageType: pkg.type,
         userId: user?.id ?? null,
         status: BookingStatus.PENDING_REVIEW,
         travelers: travelers ? { create: sanitizeTravelers(travelers) } : undefined,
@@ -699,44 +681,6 @@ const UpdateAdminNotes = async (id: string, notes: { adminNotes?: string; notes?
   });
 };
 
-const AssignFlight = async (id: string, flightId: string, admin?: JwtPayload) => {
-  const booking = await prisma.booking.findFirst({ where: { id, isDeleted: false } });
-  if (!booking) throw new AppError(httpStatus.NOT_FOUND, 'Booking not found');
-  const flight = await prisma.flight.findFirst({ where: { id: flightId, isDeleted: false } });
-  if (!flight) throw new AppError(httpStatus.NOT_FOUND, 'Flight not found');
-  return prisma.$transaction(async tx => {
-    const updated = await tx.booking.update({ where: { id }, data: { flightId, status: BookingStatus.FLIGHT_RESERVED } });
-    await tx.bookingStatusHistory.create({
-      data: { bookingId: id, fromStatus: booking.status, toStatus: BookingStatus.FLIGHT_RESERVED, changedById: actorId(admin), changedByName: actorName(admin), note: `Flight ${flight.flightNumber} assigned` },
-    });
-    await recordTimelineTx(tx, id, 'FLIGHT_ASSIGNED', 'Flight Reserved', `${flight.airlineName} ${flight.flightNumber}`, admin, true, { flightId });
-    await recordActivityTx(tx, id, 'FLIGHT_ASSIGNED', admin, { flightId, flightNumber: flight.flightNumber });
-    if (booking.userId) {
-      await notifyTx(tx, booking.userId, id, NotificationType.FLIGHT_ASSIGNED, 'Flight reserved', `${flight.airlineName} ${flight.flightNumber} reserved.`, `/pilgrim/bookings/${booking.bookingCode}`);
-    }
-    return updated;
-  });
-};
-
-const AssignHotel = async (id: string, hotelId: string, admin?: JwtPayload) => {
-  const booking = await prisma.booking.findFirst({ where: { id, isDeleted: false } });
-  if (!booking) throw new AppError(httpStatus.NOT_FOUND, 'Booking not found');
-  const hotel = await prisma.hotel.findFirst({ where: { id: hotelId, isDeleted: false } });
-  if (!hotel) throw new AppError(httpStatus.NOT_FOUND, 'Hotel not found');
-  return prisma.$transaction(async tx => {
-    const updated = await tx.booking.update({ where: { id }, data: { hotelId, status: BookingStatus.HOTEL_RESERVED } });
-    await tx.bookingStatusHistory.create({
-      data: { bookingId: id, fromStatus: booking.status, toStatus: BookingStatus.HOTEL_RESERVED, changedById: actorId(admin), changedByName: actorName(admin), note: `Hotel ${hotel.name} assigned` },
-    });
-    await recordTimelineTx(tx, id, 'HOTEL_ASSIGNED', 'Hotel Reserved', hotel.name, admin, true, { hotelId });
-    await recordActivityTx(tx, id, 'HOTEL_ASSIGNED', admin, { hotelId, name: hotel.name });
-    if (booking.userId) {
-      await notifyTx(tx, booking.userId, id, NotificationType.HOTEL_ASSIGNED, 'Hotel reserved', `${hotel.name} reserved.`, `/pilgrim/bookings/${booking.bookingCode}`);
-    }
-    return updated;
-  });
-};
-
 const AssignTransport = async (id: string, transportId: string, admin?: JwtPayload) => {
   const booking = await prisma.booking.findFirst({ where: { id, isDeleted: false } });
   if (!booking) throw new AppError(httpStatus.NOT_FOUND, 'Booking not found');
@@ -827,8 +771,6 @@ const BookingService = {
   ListActivityLog,
   ListStatusHistory,
   UpdateAdminNotes,
-  AssignFlight,
-  AssignHotel,
   AssignTransport,
   UpdatePayment,
   UpdateVisa,

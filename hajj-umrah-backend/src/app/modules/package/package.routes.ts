@@ -21,8 +21,6 @@ const packageFormData = parseFormData({
     'rating',
     'reviewsCount',
     'bookingsCount',
-    'hotelMakkahStars',
-    'hotelMadinahStars',
   ],
   booleanFields: ['featured'],
 })

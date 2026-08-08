@@ -33,9 +33,6 @@ export interface Package {
   reviewsCount: number
   bookingsCount: number
   featured: boolean
-  hotelMakkah: { name: string; stars: number; distance: string; image: string }
-  hotelMadinah: { name: string; stars: number; distance: string; image: string }
-  flight: { airline: string; departure: string; arrival: string; class: string }
   meals: string
   transport: string
   ziyarah: string[]

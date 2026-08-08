@@ -94,16 +94,6 @@ const UpdateAdminNotes = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, { success: true, statusCode: httpStatus.OK, message: 'Notes updated', data: result });
 });
 
-const AssignFlight = catchAsync(async (req: Request, res: Response) => {
-  const result = await BookingService.AssignFlight(req.params.id, req.body.flightId, req.user);
-  sendResponse(res, { success: true, statusCode: httpStatus.OK, message: 'Flight assigned', data: result });
-});
-
-const AssignHotel = catchAsync(async (req: Request, res: Response) => {
-  const result = await BookingService.AssignHotel(req.params.id, req.body.hotelId, req.user);
-  sendResponse(res, { success: true, statusCode: httpStatus.OK, message: 'Hotel assigned', data: result });
-});
-
 const AssignTransport = catchAsync(async (req: Request, res: Response) => {
   const result = await BookingService.AssignTransport(req.params.id, req.body.transportId, req.user);
   sendResponse(res, { success: true, statusCode: httpStatus.OK, message: 'Transport assigned', data: result });
@@ -137,8 +127,6 @@ const BookingController = {
   ListActivityLog,
   ListStatusHistory,
   UpdateAdminNotes,
-  AssignFlight,
-  AssignHotel,
   AssignTransport,
   UpdatePayment,
   UpdateVisa,

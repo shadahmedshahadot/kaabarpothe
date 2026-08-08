@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { toast } from 'sonner'
-import { ArrowLeft, ArrowRight, Check, ShoppingCart, Plane, Hotel as HotelIcon, Bus, Package as PackageIcon, Plus, ShieldCheck, Trash2, Loader2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, ShoppingCart, Bus, Package as PackageIcon, Plus, ShieldCheck, Trash2, Loader2 } from 'lucide-react'
 import { Input, Select, Label } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { formatCurrency } from '@/utils/format'
@@ -29,19 +29,6 @@ const PAYMENT_METHODS: { value: PaymentMethod; label: string; description: strin
   { value: 'bank-transfer', label: 'ব্যাংক ট্রান্সফার', description: 'ম্যানুয়াল যাচাই · ২৪ ঘণ্টা' },
 ]
 
-const toDateInput = (v?: string) => {
-  if (!v) return ''
-  const d = new Date(v)
-  if (Number.isNaN(d.getTime())) return ''
-  return d.toISOString().slice(0, 10)
-}
-
-const addDaysISO = (base: string, days: number) => {
-  const d = new Date(base)
-  d.setDate(d.getDate() + days)
-  return d.toISOString().slice(0, 10)
-}
-
 export function BookingWizard() {
   const router = useRouter()
   const authUser = useAuthUser()
@@ -63,30 +50,14 @@ export function BookingWizard() {
   const clearCart = useCartStore(s => s.clearCart)
 
   const pkgItem = items.find(i => i.kind === 'package')
-  const flightItem = items.find(i => i.kind === 'flight')
-  const isFlightOnly = !pkgItem && !!flightItem
-
-  const flightDefaultDeparture = toDateInput(flightItem?.meta?.departureDate as string | undefined)
-  const [travelDeparture, setTravelDeparture] = useState('')
-  const [travelReturn, setTravelReturn] = useState('')
 
   useEffect(() => {
     setHydrated(true)
   }, [])
 
-  useEffect(() => {
-    if (!isFlightOnly) return
-    if (!travelDeparture) {
-      const dep = flightDefaultDeparture || toDateInput(new Date(Date.now() + 30 * 86400000).toISOString())
-      setTravelDeparture(dep)
-      if (!travelReturn) setTravelReturn(addDaysISO(dep, 7))
-    }
-  }, [isFlightOnly, flightDefaultDeparture, travelDeparture, travelReturn])
-
   const totals = cartTotals(items)
-  const datesOk = !isFlightOnly || (Boolean(travelDeparture) && Boolean(travelReturn) && travelReturn >= travelDeparture)
   const canNext = step === 1
-    ? items.length > 0 && datesOk
+    ? items.length > 0
     : step === 2
       ? travelers.length > 0 && travelers.every(t => t.fullName && t.passportNumber) && Boolean(contact.email) && Boolean(contact.phone)
       : true
@@ -109,30 +80,23 @@ export function BookingWizard() {
       return
     }
 
-    if (!pkgItem && !flightItem) {
-      toast.error('অন্তত একটি প্যাকেজ বা ফ্লাইট নির্বাচন করুন।')
+    if (!pkgItem) {
+      toast.error('Package required')
       return
     }
-    const hotelItem = items.find(i => i.kind === 'hotel')
     const transportItem = items.find(i => i.kind === 'transport')
 
     const today = new Date()
     const fallbackDeparture = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000)
     const fallbackReturn = new Date(today.getTime() + 37 * 24 * 60 * 60 * 1000)
-    const departureDate = pkgItem
-      ? ((pkgItem.meta?.departureDate as string) ?? fallbackDeparture.toISOString())
-      : (travelDeparture ? new Date(travelDeparture).toISOString() : fallbackDeparture.toISOString())
-    const returnDate = pkgItem
-      ? ((pkgItem.meta?.returnDate as string) ?? fallbackReturn.toISOString())
-      : (travelReturn ? new Date(travelReturn).toISOString() : fallbackReturn.toISOString())
+    const departureDate = (pkgItem.meta?.departureDate as string) ?? fallbackDeparture.toISOString()
+    const returnDate = (pkgItem.meta?.returnDate as string) ?? fallbackReturn.toISOString()
 
     const primary = travelers[0]
     const paidAmount = paymentPlan === 'partial' ? Math.round(totals.total * 0.25) : paymentPlan === 'installment' ? Math.round(totals.total / 4) : 0
 
     const payload = {
-      packageId: pkgItem?.refId ?? null,
-      flightId: flightItem?.refId ?? null,
-      hotelId: hotelItem?.refId ?? null,
+      packageId: pkgItem.refId,
       transportId: transportItem?.refId ?? null,
       pilgrimName: contact.name || primary?.fullName || '',
       pilgrimEmail: contact.email,
@@ -192,14 +156,7 @@ export function BookingWizard() {
             {step === 1 && (
               <>
                 <StepServices />
-                <TravelDateCard
-                  pkgItem={pkgItem}
-                  isFlightOnly={isFlightOnly}
-                  travelDeparture={travelDeparture}
-                  travelReturn={travelReturn}
-                  onChangeDeparture={setTravelDeparture}
-                  onChangeReturn={setTravelReturn}
-                />
+                <TravelDateCard pkgItem={pkgItem} />
               </>
             )}
             {step === 2 && (
@@ -294,8 +251,6 @@ function StepServices() {
           <p className="text-sm text-muted-foreground mb-4">আপনার বুকিং খালি। শুরু করতে সেবা বেছে নিন।</p>
           <div className="grid sm:grid-cols-2 gap-3 max-w-md mx-auto">
             <QuickLink href={ROUTES.packages.umrah} icon={PackageIcon} label="প্যাকেজ ব্রাউজ করুন" />
-            <QuickLink href={ROUTES.flights.root} icon={Plane} label="ফ্লাইট ব্রাউজ করুন" />
-            <QuickLink href={ROUTES.hotels.root} icon={HotelIcon} label="হোটেল ব্রাউজ করুন" />
             <QuickLink href={ROUTES.transportation.root} icon={Bus} label="পরিবহন ব্রাউজ করুন" />
           </div>
         </div>
@@ -305,10 +260,8 @@ function StepServices() {
   return (
     <Card title="আপনার নির্বাচন" subtitle="আরও সেবা যোগ করুন বা প্রয়োজন নেই যা সরিয়ে ফেলুন।">
       <CartItems />
-      <div className="grid sm:grid-cols-4 gap-2 pt-2">
+      <div className="grid sm:grid-cols-2 gap-2 pt-2">
         <QuickLink href={ROUTES.packages.umrah} icon={PackageIcon} label="প্যাকেজ যোগ করুন" compact />
-        <QuickLink href={ROUTES.flights.root} icon={Plane} label="ফ্লাইট যোগ করুন" compact />
-        <QuickLink href={ROUTES.hotels.root} icon={HotelIcon} label="হোটেল যোগ করুন" compact />
         <QuickLink href={ROUTES.transportation.root} icon={Bus} label="পরিবহন যোগ করুন" compact />
       </div>
     </Card>
@@ -593,51 +546,21 @@ function PlanOption({
   )
 }
 
-function TravelDateCard({
-  pkgItem,
-  isFlightOnly,
-  travelDeparture,
-  travelReturn,
-  onChangeDeparture,
-  onChangeReturn,
-}: {
-  pkgItem: CartItem | undefined
-  isFlightOnly: boolean
-  travelDeparture: string
-  travelReturn: string
-  onChangeDeparture: (v: string) => void
-  onChangeReturn: (v: string) => void
-}) {
-  if (pkgItem) {
-    const dep = (pkgItem.meta?.departureDate as string) || ''
-    const ret = (pkgItem.meta?.returnDate as string) || ''
-    const fmt = (v: string) => (v ? new Date(v).toLocaleDateString('bn-BD') : '—')
-    return (
-      <Card title="ভ্রমণের তারিখ" subtitle="প্যাকেজের সাথে সংযুক্ত — পরিবর্তন করা যাবে না।">
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div className="rounded-2xl border border-border bg-muted/40 p-4">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground">প্রস্থান</p>
-            <p className="text-lg font-semibold text-foreground mt-1">{fmt(dep)}</p>
-          </div>
-          <div className="rounded-2xl border border-border bg-muted/40 p-4">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground">প্রত্যাবর্তন</p>
-            <p className="text-lg font-semibold text-foreground mt-1">{fmt(ret)}</p>
-          </div>
-        </div>
-      </Card>
-    )
-  }
-  if (!isFlightOnly) return null
+function TravelDateCard({ pkgItem }: { pkgItem: CartItem | undefined }) {
+  if (!pkgItem) return null
+  const dep = (pkgItem.meta?.departureDate as string) || ''
+  const ret = (pkgItem.meta?.returnDate as string) || ''
+  const fmt = (v: string) => (v ? new Date(v).toLocaleDateString('bn-BD') : '—')
   return (
-    <Card title="ভ্রমণের তারিখ" subtitle="ফ্লাইট-বুকিংয়ের জন্য আপনার পছন্দের তারিখ নির্বাচন করুন।">
+    <Card title="ভ্রমণের তারিখ" subtitle="প্যাকেজের সাথে সংযুক্ত — পরিবর্তন করা যাবে না।">
       <div className="grid sm:grid-cols-2 gap-4">
-        <div>
-          <Label>প্রস্থানের তারিখ</Label>
-          <Input type="date" value={travelDeparture} onChange={e => onChangeDeparture(e.target.value)} />
+        <div className="rounded-2xl border border-border bg-muted/40 p-4">
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">প্রস্থান</p>
+          <p className="text-lg font-semibold text-foreground mt-1">{fmt(dep)}</p>
         </div>
-        <div>
-          <Label>প্রত্যাবর্তনের তারিখ</Label>
-          <Input type="date" value={travelReturn} min={travelDeparture} onChange={e => onChangeReturn(e.target.value)} />
+        <div className="rounded-2xl border border-border bg-muted/40 p-4">
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">প্রত্যাবর্তন</p>
+          <p className="text-lg font-semibold text-foreground mt-1">{fmt(ret)}</p>
         </div>
       </div>
     </Card>

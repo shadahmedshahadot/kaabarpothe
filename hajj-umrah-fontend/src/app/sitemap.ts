@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { SITE } from '@/constants/site'
 import { packages } from '@/data/packages'
-import { hotels } from '@/data/hotels'
 import { transports } from '@/data/transports'
 
 const BASE = SITE.url.replace(/\/$/, '')
@@ -25,8 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/reviews', 0.7, 'weekly'),
     entry('/packages/hajj', 0.95, 'weekly'),
     entry('/packages/umrah', 0.95, 'weekly'),
-    entry('/hotels', 0.8, 'weekly'),
-    entry('/flights', 0.8, 'weekly'),
     entry('/transportation', 0.7, 'weekly'),
     entry('/privacy', 0.3, 'yearly'),
     entry('/terms', 0.3, 'yearly'),
@@ -36,13 +33,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter(p => p.status === 'published')
     .map(p => entry(`/packages/${p.type}/${p.slug}`, 0.9, 'weekly'))
 
-  const hotelRoutes: Entry[] = hotels
-    .filter(h => h.status === 'active')
-    .map(h => entry(`/hotels/${h.slug}`, 0.7, 'monthly'))
-
   const transportRoutes: Entry[] = transports
     .filter(t => t.status === 'active')
     .map(t => entry(`/transportation/${t.slug}`, 0.6, 'monthly'))
 
-  return [...staticRoutes, ...packageRoutes, ...hotelRoutes, ...transportRoutes]
+  return [...staticRoutes, ...packageRoutes, ...transportRoutes]
 }

@@ -63,8 +63,6 @@ router.patch(
   validateRequest(BookingValidation.UpdateNotesSchema),
   BookingController.UpdateAdminNotes,
 );
-router.patch('/:id/assign-flight', auth(UserRole.ADMIN), BookingController.AssignFlight);
-router.patch('/:id/assign-hotel', auth(UserRole.ADMIN), BookingController.AssignHotel);
 router.patch('/:id/assign-transport', auth(UserRole.ADMIN), BookingController.AssignTransport);
 router.patch(
   '/:id/payment',

@@ -1,4 +1,4 @@
-import { Clock, Plane, Calendar, Star, Phone, Users } from 'lucide-react'
+import { Clock, Calendar, Star, Phone, Users } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { formatCurrency, formatDate } from '@/utils/format'
 import { SITE } from '@/constants'
@@ -35,7 +35,6 @@ export function PackageSummary({ pkg }: { pkg: Package }) {
       <div className="grid grid-cols-2 gap-3 mb-6">
         <PackageStatCard icon={Clock} label="সময়কাল" value={`${pkg.duration} দিন`} />
         <PackageStatCard icon={Calendar} label="প্রস্থান" value={formatDate(pkg.departureDate, { month: 'short', day: 'numeric' })} />
-        <PackageStatCard icon={Plane} label="ফ্লাইট" value={pkg.flight.class} />
         <PackageStatCard icon={Users} label="গ্রুপের আকার" value={pkg.groupSize} />
       </div>
 

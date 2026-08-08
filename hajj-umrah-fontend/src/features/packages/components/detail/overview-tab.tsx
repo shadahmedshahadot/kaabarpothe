@@ -1,4 +1,4 @@
-import { Plane, Utensils, Bus, CheckCircle2, ShieldCheck } from 'lucide-react'
+import { Utensils, Bus, CheckCircle2, ShieldCheck } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import type { Package } from '@/data/packages'
 import { InfoBox } from './info-box'
@@ -28,7 +28,6 @@ export function OverviewTab({ pkg }: { pkg: Package }) {
       </div>
 
       <div className="space-y-4">
-        <InfoBox Icon={Plane} title="ফ্লাইট" lines={[pkg.flight.airline, pkg.flight.class, `${pkg.flight.departure} → ${pkg.flight.arrival}`]} />
         <InfoBox Icon={Utensils} title="খাবার" lines={[pkg.meals]} />
         <InfoBox Icon={Bus} title="পরিবহন" lines={[pkg.transport]} />
         <InfoBox Icon={ShieldCheck} title="ভিসা" lines={[pkg.visa]} />

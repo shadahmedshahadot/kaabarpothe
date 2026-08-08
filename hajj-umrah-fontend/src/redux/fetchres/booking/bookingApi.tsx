@@ -8,8 +8,6 @@ export type BookingStatus =
   | 'WAITING_FOR_PAYMENT'
   | 'PAYMENT_RECEIVED'
   | 'VISA_PROCESSING'
-  | 'FLIGHT_RESERVED'
-  | 'HOTEL_RESERVED'
   | 'TRANSPORTATION_CONFIRMED'
   | 'CONFIRMED'
   | 'IN_PROGRESS'
@@ -134,8 +132,6 @@ export interface BookingDto {
   pilgrimNationality?: string | null
   pilgrimPassportNo?: string | null
   pilgrimPassportExp?: string | null
-  flightId?: string | null
-  hotelId?: string | null
   transportId?: string | null
   assignedConsultantId?: string | null
   assignedConsultant?: { id: string; full_name: string; email: string; avatar?: string | null } | null
@@ -285,14 +281,6 @@ export const bookingApi = baseApi.injectEndpoints({
       query: ({ id, ...body }) => ({ url: `/bookings/${encodeURIComponent(id)}/notes`, method: 'PATCH', body }),
       invalidatesTags: (_r, _e, { id }) => [{ type: 'booking', id }],
     }),
-    assignFlight: builder.mutation<BookingItemResponse, { id: string; flightId: string }>({
-      query: ({ id, ...body }) => ({ url: `/bookings/${encodeURIComponent(id)}/assign-flight`, method: 'PATCH', body }),
-      invalidatesTags: (_r, _e, { id }) => [{ type: 'booking', id }, { type: 'bookingTimeline', id }],
-    }),
-    assignHotel: builder.mutation<BookingItemResponse, { id: string; hotelId: string }>({
-      query: ({ id, ...body }) => ({ url: `/bookings/${encodeURIComponent(id)}/assign-hotel`, method: 'PATCH', body }),
-      invalidatesTags: (_r, _e, { id }) => [{ type: 'booking', id }, { type: 'bookingTimeline', id }],
-    }),
     assignTransport: builder.mutation<BookingItemResponse, { id: string; transportId: string }>({
       query: ({ id, ...body }) => ({ url: `/bookings/${encodeURIComponent(id)}/assign-transport`, method: 'PATCH', body }),
       invalidatesTags: (_r, _e, { id }) => [{ type: 'booking', id }, { type: 'bookingTimeline', id }],
@@ -344,8 +332,6 @@ export const {
   useUploadBookingDocumentMutation,
   useVerifyBookingDocumentMutation,
   useUpdateBookingNotesMutation,
-  useAssignFlightMutation,
-  useAssignHotelMutation,
   useAssignTransportMutation,
   useUpdateBookingPaymentMutation,
   useUpdateBookingVisaMutation,
@@ -365,8 +351,6 @@ export const STATUS_LABEL: Record<BookingStatus, string> = {
   WAITING_FOR_PAYMENT: 'Waiting for Payment',
   PAYMENT_RECEIVED: 'Payment Received',
   VISA_PROCESSING: 'Visa Processing',
-  FLIGHT_RESERVED: 'Flight Reserved',
-  HOTEL_RESERVED: 'Hotel Reserved',
   TRANSPORTATION_CONFIRMED: 'Transportation Confirmed',
   CONFIRMED: 'Confirmed',
   IN_PROGRESS: 'In Progress',
@@ -383,8 +367,6 @@ export const STATUS_TONE: Record<BookingStatus, string> = {
   WAITING_FOR_PAYMENT: 'bg-orange-100 text-orange-700 border-orange-200',
   PAYMENT_RECEIVED: 'bg-emerald-100 text-emerald-700 border-emerald-200',
   VISA_PROCESSING: 'bg-violet-100 text-violet-700 border-violet-200',
-  FLIGHT_RESERVED: 'bg-indigo-100 text-indigo-700 border-indigo-200',
-  HOTEL_RESERVED: 'bg-indigo-100 text-indigo-700 border-indigo-200',
   TRANSPORTATION_CONFIRMED: 'bg-indigo-100 text-indigo-700 border-indigo-200',
   CONFIRMED: 'bg-emerald-100 text-emerald-700 border-emerald-200',
   IN_PROGRESS: 'bg-blue-100 text-blue-700 border-blue-200',
@@ -400,8 +382,6 @@ export const ALL_STATUSES: BookingStatus[] = [
   'WAITING_FOR_PAYMENT',
   'PAYMENT_RECEIVED',
   'VISA_PROCESSING',
-  'FLIGHT_RESERVED',
-  'HOTEL_RESERVED',
   'TRANSPORTATION_CONFIRMED',
   'CONFIRMED',
   'COMPLETED',

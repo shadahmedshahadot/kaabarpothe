@@ -28,8 +28,6 @@ import {
   useUpdateBookingNotesMutation,
   useUpdateBookingPaymentMutation,
   useUpdateBookingVisaMutation,
-  useAssignFlightMutation,
-  useAssignHotelMutation,
   useAssignTransportMutation,
   useGetBookingTimelineQuery,
   useGetBookingMessagesQuery,
@@ -102,7 +100,7 @@ export function AdminBookingManager({ id }: { id: string }) {
         </div>
         <div className="space-y-6">
           <AssignConsultantBlock id={booking.id} current={booking.assignedConsultant} />
-          <AssignEntitiesBlock id={booking.id} flightId={booking.flightId ?? null} hotelId={booking.hotelId ?? null} transportId={booking.transportId ?? null} />
+          <AssignEntitiesBlock id={booking.id} transportId={booking.transportId ?? null} />
           <TimelineBlock id={booking.id} />
           <StatusHistoryBlock id={booking.id} />
           <ActivityLogBlock id={booking.id} />
@@ -417,12 +415,8 @@ function AssignConsultantBlock({ id, current }: { id: string; current?: { id: st
   )
 }
 
-function AssignEntitiesBlock({ id, flightId, hotelId, transportId }: { id: string; flightId: string | null; hotelId: string | null; transportId: string | null }) {
-  const [assignFlight] = useAssignFlightMutation()
-  const [assignHotel] = useAssignHotelMutation()
+function AssignEntitiesBlock({ id, transportId }: { id: string; transportId: string | null }) {
   const [assignTransport] = useAssignTransportMutation()
-  const [f, setF] = useState(flightId ?? '')
-  const [h, setH] = useState(hotelId ?? '')
   const [t, setT] = useState(transportId ?? '')
 
   const wrap = async (fn: () => Promise<unknown>, name: string) => {
@@ -438,8 +432,6 @@ function AssignEntitiesBlock({ id, flightId, hotelId, transportId }: { id: strin
     <div className="bg-card border border-border rounded-3xl p-6">
       <h3 className="font-bold text-foreground mb-3">বরাদ্দ</h3>
       <div className="space-y-2">
-        <Field label="ফ্লাইট ID" value={f} onChange={setF} onSubmit={() => wrap(() => assignFlight({ id, flightId: f }).unwrap(), 'ফ্লাইট')} />
-        <Field label="হোটেল ID" value={h} onChange={setH} onSubmit={() => wrap(() => assignHotel({ id, hotelId: h }).unwrap(), 'হোটেল')} />
         <Field label="পরিবহন ID" value={t} onChange={setT} onSubmit={() => wrap(() => assignTransport({ id, transportId: t }).unwrap(), 'পরিবহন')} />
       </div>
     </div>

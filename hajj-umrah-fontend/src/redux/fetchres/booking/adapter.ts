@@ -9,8 +9,6 @@ const statusMap: Record<BookingDto['status'], BookingStatus> = {
   WAITING_FOR_PAYMENT: 'in-progress',
   PAYMENT_RECEIVED: 'in-progress',
   VISA_PROCESSING: 'in-progress',
-  FLIGHT_RESERVED: 'in-progress',
-  HOTEL_RESERVED: 'in-progress',
   TRANSPORTATION_CONFIRMED: 'in-progress',
   CONFIRMED: 'confirmed',
   IN_PROGRESS: 'in-progress',

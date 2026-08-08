@@ -2,8 +2,6 @@ import express from 'express';
 import { AuthRoutes } from '../modules/auth/auth.routes';
 import { userRouter } from '../modules/user/user.router';
 import { PackageRoutes } from '../modules/package/package.routes';
-import { HotelRoutes } from '../modules/hotel/hotel.routes';
-import { FlightRoutes } from '../modules/flight/flight.routes';
 import { TransportRoutes } from '../modules/transport/transport.routes';
 import { BookingRoutes } from '../modules/booking/booking.routes';
 import { PaymentRoutes } from '../modules/payment/payment.routes';
@@ -28,8 +26,6 @@ const routes: Route[] = [
   { path: '/auth', route: AuthRoutes },
   { path: '/user', route: userRouter },
   { path: '/packages', route: PackageRoutes },
-  { path: '/hotels', route: HotelRoutes },
-  { path: '/flights', route: FlightRoutes },
   { path: '/transports', route: TransportRoutes },
   { path: '/bookings', route: BookingRoutes },
   { path: '/payments', route: PaymentRoutes },

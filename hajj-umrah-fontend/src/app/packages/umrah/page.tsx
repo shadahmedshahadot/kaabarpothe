@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { PageShell, PageHero } from '@/components/layouts/page-shell'
 import { PackageListing } from '@/features/packages/components/package-listing'
-import { fetchPackagesByType } from '@/lib/seo-fetch'
-import { adaptPackage } from '@/redux/fetchres/package/adapter'
 import { BreadcrumbJsonLd } from '@/components/common'
 import { SITE } from '@/constants/site'
 
@@ -72,9 +70,7 @@ const umrahServiceLd = {
   audience: { '@type': 'PeopleAudience', name: 'Muslim Pilgrims' },
 }
 
-export default async function UmrahPackagesPage() {
-  const dtos = await fetchPackagesByType('UMRAH')
-  const packages = dtos.map(adaptPackage)
+export default function UmrahPackagesPage() {
   return (
     <PageShell>
       <BreadcrumbJsonLd items={[{ label: 'উমরাহ প্যাকেজ' }]} />
@@ -85,7 +81,7 @@ export default async function UmrahPackagesPage() {
         title="প্রতিটি বাজেট ও মৌসুমের জন্য উমরাহ প্যাকেজ।"
         description="সাশ্রয়ী বাজেট উমরাহ থেকে শুরু করে অতি-লাক্সারি মার্সিডিজ ট্রান্সফারযুক্ত স্যুট পর্যন্ত। বছরের যেকোনো মাসে উমরাহ পালন করুন।"
       />
-      <PackageListing packages={packages} type="umrah" />
+      <PackageListing type="umrah" />
     </PageShell>
   )
 }

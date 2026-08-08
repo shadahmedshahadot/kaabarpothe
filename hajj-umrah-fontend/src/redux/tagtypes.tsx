@@ -2,8 +2,6 @@ export const tagTypesList = [
   'auth',
   'user',
   'package',
-  'hotel',
-  'flight',
   'transport',
   'booking',
   'payment',

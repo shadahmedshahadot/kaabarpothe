@@ -11,8 +11,6 @@ export interface GalleryUploadProps {
   onChange: (urls: string[]) => void
   folder?:
     | 'packages'
-    | 'hotels'
-    | 'flights'
     | 'transports'
     | 'blogs'
     | 'avatars'

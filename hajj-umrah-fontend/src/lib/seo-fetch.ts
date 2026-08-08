@@ -1,6 +1,4 @@
 import type { PackageDto } from '@/redux/fetchres/package/packageApi'
-import type { HotelDto } from '@/redux/fetchres/hotel/hotelApi'
-import type { FlightDto } from '@/redux/fetchres/flight/flightApi'
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:9000/api'
 
@@ -22,9 +20,3 @@ export const fetchPackagesByType = async (type: 'HAJJ' | 'UMRAH'): Promise<Packa
   const result = await safeFetch<PackageDto[]>(`/packages?type=${type}&status=PUBLISHED&limit=100`)
   return result ?? []
 }
-
-export const fetchHotel = (slug: string) =>
-  safeFetch<HotelDto>(`/hotels/${encodeURIComponent(slug)}`)
-
-export const fetchFlight = (slug: string) =>
-  safeFetch<FlightDto>(`/flights/${encodeURIComponent(slug)}`)

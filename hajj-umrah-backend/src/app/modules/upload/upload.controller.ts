@@ -8,8 +8,6 @@ import { sendImageCloudinary } from '../../utils/sendImageToCloudinary'
 const resolveFolder = (raw: unknown): string => {
   const allowed = [
     'packages',
-    'hotels',
-    'flights',
     'transports',
     'blogs',
     'avatars',

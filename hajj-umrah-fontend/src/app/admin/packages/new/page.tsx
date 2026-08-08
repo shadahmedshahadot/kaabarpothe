@@ -10,7 +10,6 @@ import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { Input, Textarea, Select, Label } from '@/components/ui/input'
 import { ReachKeyboard } from '@/components/ui/reach-keyboard'
 import { CoverUpload, GalleryUpload } from '@/components/common'
-import { HotelSelector } from '@/features/admin/components/hotel-selector'
 import { useCreatePackageMutation } from '@/redux/fetchres/package/packageApi'
 
 type Tier = 'BUDGET' | 'ECONOMY' | 'STANDARD' | 'PREMIUM' | 'VIP' | 'LUXURY'
@@ -57,22 +56,6 @@ export default function NewPackagePage() {
   // Status
   const [availability, setAvailability] = useState<'AVAILABLE' | 'LIMITED' | 'SOLDOUT'>('AVAILABLE')
   const [featured, setFeatured] = useState(false)
-
-  // Hotels
-  const [hotelMakkahName, setHotelMakkahName] = useState('')
-  const [hotelMakkahStars, setHotelMakkahStars] = useState('5')
-  const [hotelMakkahDistance, setHotelMakkahDistance] = useState('')
-  const [hotelMakkahImage, setHotelMakkahImage] = useState('')
-  const [hotelMadinahName, setHotelMadinahName] = useState('')
-  const [hotelMadinahStars, setHotelMadinahStars] = useState('5')
-  const [hotelMadinahDistance, setHotelMadinahDistance] = useState('')
-  const [hotelMadinahImage, setHotelMadinahImage] = useState('')
-
-  // Flight
-  const [flightAirline, setFlightAirline] = useState('')
-  const [flightDeparture, setFlightDeparture] = useState('')
-  const [flightArrival, setFlightArrival] = useState('')
-  const [flightClass, setFlightClass] = useState('Economy')
 
   // Misc
   const [meals, setMeals] = useState('')
@@ -125,16 +108,6 @@ export default function NewPackagePage() {
       ['প্রস্থানের তারিখ', 'departureDate', departureDate],
       ['প্রত্যাবর্তনের তারিখ', 'returnDate', returnDate],
       ['মূল্য', 'price', price],
-      ['মক্কা হোটেলের নাম', 'hotelMakkahName', hotelMakkahName],
-      ['মক্কা হোটেল দূরত্ব', 'hotelMakkahDistance', hotelMakkahDistance],
-      ['মক্কা হোটেলের ছবি', 'hotelMakkahImage', hotelMakkahImage],
-      ['মদিনা হোটেলের নাম', 'hotelMadinahName', hotelMadinahName],
-      ['মদিনা হোটেল দূরত্ব', 'hotelMadinahDistance', hotelMadinahDistance],
-      ['মদিনা হোটেলের ছবি', 'hotelMadinahImage', hotelMadinahImage],
-      ['এয়ারলাইন', 'flightAirline', flightAirline],
-      ['ফ্লাইট প্রস্থান', 'flightDeparture', flightDeparture],
-      ['ফ্লাইট আগমন', 'flightArrival', flightArrival],
-      ['ফ্লাইট ক্লাস', 'flightClass', flightClass],
       ['খাবার', 'meals', meals],
       ['পরিবহন', 'transport', transport],
       ['ভিসা', 'visa', visa],
@@ -168,20 +141,6 @@ export default function NewPackagePage() {
     fd.append('availability', availability)
     fd.append('seatsLeft', String(seatsLeft || 0))
     fd.append('featured', String(featured))
-
-    fd.append('hotelMakkahName', hotelMakkahName)
-    fd.append('hotelMakkahStars', String(hotelMakkahStars))
-    fd.append('hotelMakkahDistance', hotelMakkahDistance)
-    fd.append('hotelMakkahImage', hotelMakkahImage)
-    fd.append('hotelMadinahName', hotelMadinahName)
-    fd.append('hotelMadinahStars', String(hotelMadinahStars))
-    fd.append('hotelMadinahDistance', hotelMadinahDistance)
-    fd.append('hotelMadinahImage', hotelMadinahImage)
-
-    fd.append('flightAirline', flightAirline)
-    fd.append('flightDeparture', flightDeparture)
-    fd.append('flightArrival', flightArrival)
-    fd.append('flightClass', flightClass)
 
     fd.append('meals', meals)
     fd.append('transport', transport)
@@ -330,74 +289,6 @@ export default function NewPackagePage() {
               <div>
                 <Label>মোট আসন</Label>
                 <Input type="number" value={seatsLeft} onChange={e => setSeatsLeft(e.target.value)} placeholder="30" />
-              </div>
-            </div>
-          </Card>
-
-          <Card title="হোটেল">
-            <p className="text-xs text-muted-foreground mb-2">
-              বিদ্যমান হোটেল থেকে নির্বাচন করুন।{' '}
-              <a href="/admin/hotels/new" target="_blank" className="text-primary underline">
-                নতুন হোটেল যোগ করুন
-              </a>
-            </p>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="space-y-3">
-                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">মক্কা হোটেল</p>
-                <HotelSelector
-                  city="MAKKAH"
-                  value={{
-                    name: hotelMakkahName,
-                    stars: hotelMakkahStars,
-                    distance: hotelMakkahDistance,
-                    image: hotelMakkahImage,
-                  }}
-                  onChange={v => {
-                    setHotelMakkahName(v.name)
-                    setHotelMakkahStars(v.stars)
-                    setHotelMakkahDistance(v.distance)
-                    setHotelMakkahImage(v.image)
-                  }}
-                />
-              </div>
-              <div className="space-y-3">
-                <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">মদিনা হোটেল</p>
-                <HotelSelector
-                  city="MADINAH"
-                  value={{
-                    name: hotelMadinahName,
-                    stars: hotelMadinahStars,
-                    distance: hotelMadinahDistance,
-                    image: hotelMadinahImage,
-                  }}
-                  onChange={v => {
-                    setHotelMadinahName(v.name)
-                    setHotelMadinahStars(v.stars)
-                    setHotelMadinahDistance(v.distance)
-                    setHotelMadinahImage(v.image)
-                  }}
-                />
-              </div>
-            </div>
-          </Card>
-
-          <Card title="ফ্লাইট তথ্য">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div>
-                <Label>এয়ারলাইন</Label>
-                <Input value={flightAirline} onChange={e => setFlightAirline(e.target.value)} placeholder="সৌদিয়া / এমিরেটস" />
-              </div>
-              <div>
-                <Label>ক্লাস</Label>
-                <Input value={flightClass} onChange={e => setFlightClass(e.target.value)} placeholder="Economy / Business" />
-              </div>
-              <div>
-                <Label>প্রস্থান</Label>
-                <Input value={flightDeparture} onChange={e => setFlightDeparture(e.target.value)} placeholder="ঢাকা সরাসরি" />
-              </div>
-              <div>
-                <Label>আগমন</Label>
-                <Input value={flightArrival} onChange={e => setFlightArrival(e.target.value)} placeholder="জেদ্দা (JED)" />
               </div>
             </div>
           </Card>

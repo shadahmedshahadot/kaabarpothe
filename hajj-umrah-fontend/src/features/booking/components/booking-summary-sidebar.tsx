@@ -1,6 +1,6 @@
 'use client'
 
-import { Plane, Hotel, Bus, Package as PackageIcon, X, ShieldCheck } from 'lucide-react'
+import { Bus, Package as PackageIcon, X, ShieldCheck } from 'lucide-react'
 import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { formatCurrency } from '@/utils/format'
@@ -9,8 +9,6 @@ import type { CartItem } from '@/redux/cart'
 
 const kindIcon = {
   package: PackageIcon,
-  flight: Plane,
-  hotel: Hotel,
   transport: Bus,
 } as const
 

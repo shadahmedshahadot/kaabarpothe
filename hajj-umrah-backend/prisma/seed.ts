@@ -161,9 +161,6 @@ const packageSeeds = [
     duration: 21, departureDate: new Date('2026-05-22'), returnDate: new Date('2026-06-11'),
     price: 6499, discount: 0, status: 'PUBLISHED' as const, availability: 'AVAILABLE' as const, seatsLeft: 18,
     rating: 4.6, reviewsCount: 234, bookingsCount: 612, featured: false,
-    hotelMakkahName: 'দার আল ঈমান রয়্যাল', hotelMakkahStars: 3, hotelMakkahDistance: 'হারাম থেকে ৮৫০ মিটার', hotelMakkahImage: IMG.haramAerial,
-    hotelMadinahName: 'ওলায়ান আল মদিনা', hotelMadinahStars: 3, hotelMadinahDistance: 'মসজিদে নববী থেকে ৪৫০ মিটার', hotelMadinahImage: IMG.nabawiDay,
-    flightAirline: 'সৌদি এয়ারলাইন্স', flightDeparture: 'ঢাকা থেকে সরাসরি', flightArrival: 'জেদ্দা (JED)', flightClass: 'ইকোনমি',
     meals: 'নাশতা ও রাতের খাবার — বুফে', transport: 'সকল স্থানান্তর ও যিয়ারত ট্যুরের জন্য এসি কোচ',
     ziyarah: commonZiyarah, visa: 'হজ্জ ভিসা, বায়োমেট্রিক নিবন্ধন এবং ই-তাসরিহ অন্তর্ভুক্ত',
     included: ['হজ্জ ভিসা ও পারমিট', 'রাউন্ড-ট্রিপ ফ্লাইট (ইকোনমি)', '৩-তারকা হোটেল (কোয়াড শেয়ার)', 'এসি কোচ পরিবহন', 'নাশতা ও রাতের খাবার', 'কুরবানি কুপন', 'পুরুষদের জন্য ইহরাম', 'অভিজ্ঞ গ্রুপ লিডার', 'যিয়ারত ট্যুর', 'মিনা তাঁবু (D-ক্যাটাগরি)', '২৪/৭ গ্রাউন্ড সাপোর্ট'],
@@ -180,9 +177,6 @@ const packageSeeds = [
     duration: 23, departureDate: new Date('2026-05-20'), returnDate: new Date('2026-06-12'),
     price: 8999, discount: 500, status: 'PUBLISHED' as const, availability: 'LIMITED' as const, seatsLeft: 6,
     rating: 4.8, reviewsCount: 421, bookingsCount: 1340, featured: true,
-    hotelMakkahName: 'হিলটন স্যুটস মক্কা', hotelMakkahStars: 4, hotelMakkahDistance: 'হারাম থেকে ৪০০ মিটার', hotelMakkahImage: IMG.kaabaClockTower,
-    hotelMadinahName: 'পুলম্যান জমজম মদিনা', hotelMadinahStars: 4, hotelMadinahDistance: 'মসজিদে নববী থেকে ১৮০ মিটার', hotelMadinahImage: IMG.greenDomeMinarets,
-    flightAirline: 'এমিরেটস / কাতার এয়ারওয়েজ', flightDeparture: 'DXB/DOH হয়ে সংযোগ', flightArrival: 'জেদ্দা (JED)', flightClass: 'ইকোনমি প্লাস',
     meals: 'নাশতা, দুপুর ও রাতের খাবার — আন্তর্জাতিক বুফে', transport: 'প্রিমিয়াম এসি কোচ + বিমানবন্দর লাক্সারি স্থানান্তর',
     ziyarah: commonZiyarah, visa: 'হজ্জ ভিসা, বায়োমেট্রিক, ই-তাসরিহ, সকল পারমিট অন্তর্ভুক্ত',
     included: ['হজ্জ ভিসা ও পারমিট', 'রাউন্ড-ট্রিপ ফ্লাইট', '৪-তারকা হোটেল (ট্রিপল শেয়ার)', 'সকল খাবার', 'লাক্সারি পরিবহন', 'কুরবানি কুপন', 'ইহরাম ও বেল্ট', 'আলেম গাইড', 'সম্পূর্ণ যিয়ারত ট্যুর', 'মিনা তাঁবু (C-ক্যাটাগরি)', 'জমজম পানি (১০ লিটার)', '২৪/৭ বহুভাষিক সাপোর্ট'],
@@ -199,9 +193,6 @@ const packageSeeds = [
     duration: 24, departureDate: new Date('2026-05-19'), returnDate: new Date('2026-06-13'),
     price: 13499, discount: 800, status: 'PUBLISHED' as const, availability: 'AVAILABLE' as const, seatsLeft: 12,
     rating: 4.9, reviewsCount: 187, bookingsCount: 542, featured: true,
-    hotelMakkahName: 'কনরাড মক্কা / ফেয়ারমন্ট ক্লক টাওয়ার', hotelMakkahStars: 5, hotelMakkahDistance: '৫০ মিটার / হারাম ভিউ', hotelMakkahImage: IMG.kaabaDayMinarets,
-    hotelMadinahName: 'দ্য ওবেরয় মদিনা', hotelMadinahStars: 5, hotelMadinahDistance: 'মসজিদে নববী থেকে ১২০ মিটার', hotelMadinahImage: IMG.greenDomeClose,
-    flightAirline: 'এমিরেটস / কাতার এয়ারওয়েজ', flightDeparture: 'সরাসরি', flightArrival: 'জেদ্দা (JED)', flightClass: 'প্রিমিয়াম ইকোনমি',
     meals: 'সকল খাবার — প্রিমিয়াম আন্তর্জাতিক বুফে', transport: 'লাক্সারি এসি কোচ + ভিআইপি স্থানান্তরের জন্য প্রাইভেট SUV',
     ziyarah: commonZiyarah, visa: 'হজ্জ ভিসা, ই-তাসরিহ, সকল পারমিট, বায়োমেট্রিক অন্তর্ভুক্ত',
     included: ['হজ্জ ভিসা ও পারমিট', 'প্রিমিয়াম ইকোনমি ফ্লাইট', '৫-তারকা হারাম-ভিউ হোটেল (ডাবল শেয়ার)', 'সকল প্রিমিয়াম খাবার', 'লাক্সারি পরিবহন', 'প্রিমিয়াম কুরবানি', 'প্রিমিয়াম ইহরাম কিট', 'নিবেদিত আলেম', 'সম্পূর্ণ যিয়ারত', 'মিনা তাঁবু (B-ক্যাটাগরি)', 'জমজম (১০ লিটার)', 'স্বাগতম উপহার হ্যাম্পার', '২৪/৭ কনসিয়ার্জ'],
@@ -218,9 +209,6 @@ const packageSeeds = [
     duration: 25, departureDate: new Date('2026-05-18'), returnDate: new Date('2026-06-14'),
     price: 24999, discount: 1500, status: 'PUBLISHED' as const, availability: 'LIMITED' as const, seatsLeft: 4,
     rating: 5.0, reviewsCount: 78, bookingsCount: 156, featured: true,
-    hotelMakkahName: 'রাফেলস মক্কা প্যালেস', hotelMakkahStars: 5, hotelMakkahDistance: 'হারামের সংলগ্ন', hotelMakkahImage: IMG.kaabaNightKiswa,
-    hotelMadinahName: 'মদিনা ম্যারিয়ট', hotelMadinahStars: 5, hotelMadinahDistance: 'মসজিদে নববী থেকে ৯০ মিটার', hotelMadinahImage: IMG.nabawiNight,
-    flightAirline: 'এমিরেটস / কাতার', flightDeparture: 'সরাসরি', flightArrival: 'জেদ্দা (JED)', flightClass: 'বিজনেস ক্লাস',
     meals: 'সকল খাবার আ লা কার্টে, প্রিমিয়াম ইফতার, ইন-রুম ডাইনিং', transport: 'সর্বত্র প্রাইভেট মার্সিডিজ ভি-ক্লাস স্থানান্তর',
     ziyarah: commonZiyarah, visa: 'ভিআইপি হজ্জ ভিসা ফাস্ট-ট্র্যাক, সকল পারমিট, বায়োমেট্রিক অন্তর্ভুক্ত',
     included: ['হজ্জ ভিসা ফাস্ট-ট্র্যাক', 'বিজনেস ক্লাস ফ্লাইট', '৫-তারকা স্যুট একক অধিবাসন', 'সকল প্রিমিয়াম খাবার', 'প্রাইভেট মার্সিডিজ স্থানান্তর', 'প্রিমিয়াম কুরবানি × ২', 'লাক্সারি ইহরাম কিট', 'ব্যক্তিগত আলেম (১:৫ অনুপাত)', 'প্রাইভেট যিয়ারত ট্যুর', 'মিনা তাঁবু (A-ক্যাটাগরি ভিআইপি)', 'জমজম (২০ লিটার)', 'স্বাগতম হ্যাম্পার', 'ব্যক্তিগত বাটলার', '২৪/৭ কনসিয়ার্জ'],
@@ -237,9 +225,6 @@ const packageSeeds = [
     duration: 7, departureDate: new Date('2026-02-15'), returnDate: new Date('2026-02-21'),
     price: 1199, discount: 100, status: 'PUBLISHED' as const, availability: 'AVAILABLE' as const, seatsLeft: 42,
     rating: 4.5, reviewsCount: 312, bookingsCount: 1820, featured: false,
-    hotelMakkahName: 'আল মাসসা হোটেল', hotelMakkahStars: 3, hotelMakkahDistance: 'হারাম থেকে ৯০০ মিটার', hotelMakkahImage: IMG.haramAerial,
-    hotelMadinahName: 'দাল্লাহ তায়বাহ', hotelMadinahStars: 3, hotelMadinahDistance: 'মসজিদে নববী থেকে ৩৫০ মিটার', hotelMadinahImage: IMG.nabawiUmbrellas,
-    flightAirline: 'টার্কিশ এয়ারলাইন্স', flightDeparture: 'IST হয়ে সংযোগ', flightArrival: 'জেদ্দা (JED)', flightClass: 'ইকোনমি',
     meals: 'শুধুমাত্র নাশতা', transport: 'স্থানান্তর ও যিয়ারতের জন্য শেয়ার্ড এসি কোচ',
     ziyarah: ['জাবাল আন-নূর', 'জাবাল সাওর', 'মসজিদ আয়েশা', 'কুবা মসজিদ', 'মসজিদ আল-কিবলাতাইন', 'উহুদ পর্বত'],
     visa: 'উমরাহ ভিসা ও প্রক্রিয়াকরণ অন্তর্ভুক্ত',
@@ -257,9 +242,6 @@ const packageSeeds = [
     duration: 10, departureDate: new Date('2026-03-01'), returnDate: new Date('2026-03-10'),
     price: 1899, discount: 150, status: 'PUBLISHED' as const, availability: 'AVAILABLE' as const, seatsLeft: 27,
     rating: 4.7, reviewsCount: 489, bookingsCount: 2410, featured: true,
-    hotelMakkahName: 'রোতানা কর্তৃক আল মারওয়া রায়হান', hotelMakkahStars: 4, hotelMakkahDistance: 'হারাম থেকে ৫০০ মিটার', hotelMakkahImage: IMG.kaabaDayCrowd,
-    hotelMadinahName: 'রয়্যাল ইন মদিনা', hotelMadinahStars: 4, hotelMadinahDistance: 'মসজিদে নববী থেকে ২৫০ মিটার', hotelMadinahImage: IMG.nabawiUmbrellaGolden,
-    flightAirline: 'কাতার এয়ারওয়েজ', flightDeparture: 'DOH হয়ে সংযোগ', flightArrival: 'জেদ্দা (JED)', flightClass: 'ইকোনমি',
     meals: 'নাশতা ও রাতের খাবার — বুফে', transport: 'সকল স্থানান্তর ও যিয়ারতের জন্য এসি কোচ',
     ziyarah: commonZiyarah, visa: 'উমরাহ ভিসা, বায়োমেট্রিক ও প্রক্রিয়াকরণ অন্তর্ভুক্ত',
     included: ['উমরাহ ভিসা', 'রাউন্ড-ট্রিপ ফ্লাইট', '৪-তারকা হোটেল (ট্রিপল)', 'নাশতা ও রাতের খাবার', 'এসি পরিবহন', 'যিয়ারত ট্যুর', 'আলেম গ্রুপ লিডার', 'পুরুষদের জন্য ইহরাম', 'জমজম ৫ লিটার', '২৪/৭ সাপোর্ট'],
@@ -276,9 +258,6 @@ const packageSeeds = [
     duration: 12, departureDate: new Date('2026-03-15'), returnDate: new Date('2026-03-26'),
     price: 3299, discount: 200, status: 'PUBLISHED' as const, availability: 'AVAILABLE' as const, seatsLeft: 18,
     rating: 4.9, reviewsCount: 234, bookingsCount: 980, featured: true,
-    hotelMakkahName: 'সুইসোটেল মক্কা / পুলম্যান জমজম', hotelMakkahStars: 5, hotelMakkahDistance: 'হারাম থেকে ১৮০ মিটার', hotelMakkahImage: IMG.kaabaDayMinarets,
-    hotelMadinahName: 'লি মেরিডিয়েন মদিনা', hotelMadinahStars: 5, hotelMadinahDistance: 'মসজিদে নববী থেকে ১২০ মিটার', hotelMadinahImage: IMG.greenDomeStarFrame,
-    flightAirline: 'এমিরেটস / কাতার', flightDeparture: 'সংযোগ বা সরাসরি', flightArrival: 'জেদ্দা (JED)', flightClass: 'ইকোনমি প্লাস',
     meals: 'সকল খাবার — প্রিমিয়াম আন্তর্জাতিক বুফে', transport: 'লাক্সারি এসি কোচ + প্রাইভেট বিমানবন্দর স্থানান্তর',
     ziyarah: commonZiyarah, visa: 'উমরাহ ভিসা ফাস্ট-ট্র্যাক অন্তর্ভুক্ত',
     included: ['উমরাহ ভিসা ফাস্ট-ট্র্যাক', 'প্রিমিয়াম ইকোনমি ফ্লাইট', '৫-তারকা হোটেল (ডাবল শেয়ার)', 'সকল প্রিমিয়াম খাবার', 'লাক্সারি পরিবহন', 'নিবেদিত আলেম', 'সম্পূর্ণ যিয়ারত', 'প্রিমিয়াম ইহরাম কিট', 'জমজম ১০ লিটার', 'স্বাগতম উপহার', '২৪/৭ কনসিয়ার্জ'],
@@ -295,9 +274,6 @@ const packageSeeds = [
     duration: 14, departureDate: new Date('2026-04-01'), returnDate: new Date('2026-04-14'),
     price: 6499, discount: 400, status: 'PUBLISHED' as const, availability: 'LIMITED' as const, seatsLeft: 6,
     rating: 5.0, reviewsCount: 89, bookingsCount: 215, featured: true,
-    hotelMakkahName: 'রাফেলস মক্কা প্যালেস (স্যুট)', hotelMakkahStars: 5, hotelMakkahDistance: 'হারামের সংলগ্ন', hotelMakkahImage: IMG.kaabaNightHaram,
-    hotelMadinahName: 'দ্য ওবেরয় মদিনা (স্যুট)', hotelMadinahStars: 5, hotelMadinahDistance: 'মসজিদে নববী থেকে ৯০ মিটার', hotelMadinahImage: IMG.nabawiNight,
-    flightAirline: 'এমিরেটস / কাতার', flightDeparture: 'সরাসরি', flightArrival: 'জেদ্দা (JED)', flightClass: 'বিজনেস ক্লাস',
     meals: 'আ লা কার্টে প্রিমিয়াম, ২৪/৭ ইন-রুম ডাইনিং', transport: 'সর্বত্র প্রাইভেট মার্সিডিজ ভি-ক্লাস',
     ziyarah: commonZiyarah, visa: 'উমরাহ ভিসা ভিআইপি ফাস্ট-ট্র্যাক অন্তর্ভুক্ত',
     included: ['ভিআইপি ভিসা ফাস্ট-ট্র্যাক', 'বিজনেস ক্লাস ফ্লাইট', '৫-তারকা স্যুট একক অধিবাসন', 'আ লা কার্টে খাবার', 'প্রাইভেট মার্সিডিজ', 'ব্যক্তিগত আলেম (১:৩)', 'প্রাইভেট যিয়ারত', 'লাক্সারি ইহরাম কিট', 'জমজম ২০ লিটার', 'স্বাগতম হ্যাম্পার', 'ব্যক্তিগত বাটলার', '২৪/৭ কনসিয়ার্জ'],
@@ -307,137 +283,6 @@ const packageSeeds = [
     gallery: [IMG.kaabaNightHaram, IMG.kaabaNightKiswa, IMG.kaabaNightFamily, IMG.nabawiNight, IMG.greenDomeStarFrame],
     cover: IMG.kaabaNightHaram, ext_id: 'pkg-umrah-luxury',
   },
-]
-
-const hotelSeeds = [
-  {
-    slug: 'hilton-suites-makkah', name: 'হিলটন স্যুটস মক্কা', category: 4, city: 'MAKKAH' as const,
-    address: 'জাবাল ওমর, ইব্রাহিম আল খলিল রোড, মক্কা ২৪২৩১',
-    distanceFromHaram: 'হারাম থেকে ৪০০ মিটার হাঁটা',
-    images: [IMG.kaabaClockTower, IMG.kaabaDayMinarets, IMG.haramAerial, IMG.kaabaDayCrowd],
-    cover: IMG.kaabaClockTower,
-    description: 'মসজিদুল হারামের ৫-মিনিট হাঁটার দূরত্বে আধুনিক ৪-তারকা স্যুট।',
-    facilities: ['ফ্রি ওয়াই-ফাই', 'রুমে জায়নামাজ', '২৪/৭ রিসেপশন', 'হালাল রেস্তোরাঁ', 'কিবলা দিক', 'ইস্ত্রি সেবা', 'দৈনিক হাউসকিপিং', 'বিমানবন্দর স্থানান্তর (অর্থপ্রদেয়)'],
-    meals: 'নাশতা বুফে অন্তর্ভুক্ত · দুপুর ও রাতের খাবার উপলব্ধ',
-    checkInDate: new Date('2026-02-15'), checkOutDate: new Date('2026-02-22'),
-    totalRooms: 220, pricePerNight: 165,
-    rating: 4.7, reviewsCount: 1280, bookingsCount: 5420, status: 'ACTIVE' as const, featured: true,
-    notes: 'উমরাহ গ্রুপগুলির জন্য শীর্ষ-রেটেড ৪-তারকা পছন্দ।',
-    roomTypes: [
-      { name: 'স্ট্যান্ডার্ড টুইন', capacity: 2, pricePerNight: 165, available: 28, board: 'BREAKFAST' as const },
-      { name: 'ফ্যামিলি স্যুট', capacity: 4, pricePerNight: 245, available: 12, board: 'HALF_BOARD' as const },
-      { name: 'হারাম-ভিউ ডিলাক্স', capacity: 2, pricePerNight: 320, available: 6, board: 'HALF_BOARD' as const },
-    ],
-  },
-  {
-    slug: 'fairmont-makkah-clock-tower', name: 'ফেয়ারমন্ট মক্কা ক্লক রয়্যাল টাওয়ার', category: 5, city: 'MAKKAH' as const,
-    address: 'আবরাজ আল বাইত কমপ্লেক্স, কিং আব্দুল আজিজ এনডাওমেন্ট',
-    distanceFromHaram: 'হারামের সংলগ্ন (ক্লক টাওয়ার)',
-    images: [IMG.kaabaNightKiswa, IMG.kaabaNightHaram, IMG.kaabaCloseDoor, IMG.kaabaNightFamily],
-    cover: IMG.kaabaNightKiswa,
-    description: 'ক্লক টাওয়ারের ভিতরে আইকনিক ৫-তারকা লাক্সারি।',
-    facilities: ['সরাসরি হারাম ভিউ', 'বাটলার সেবা', 'প্রিমিয়াম নামাজ রুম', 'স্পা', 'ফাইন ডাইনিং (হালাল)', '২৪/৭ কনসিয়ার্জ', 'ভ্যালেট পার্কিং', 'লিমুজিন সেবা'],
-    meals: 'আ লা কার্টে ফাইন ডাইনিং, ২৪/৭ ইন-রুম ডাইনিং',
-    checkInDate: new Date('2026-02-15'), checkOutDate: new Date('2026-02-22'),
-    totalRooms: 858, pricePerNight: 520,
-    rating: 4.9, reviewsCount: 2840, bookingsCount: 4180, status: 'ACTIVE' as const, featured: true,
-    notes: 'ভিআইপি ও লাক্সারি প্যাকেজে একচেটিয়াভাবে বুক করা হয়।',
-    roomTypes: [
-      { name: 'প্রিমিয়ার রুম (সিটি ভিউ)', capacity: 2, pricePerNight: 520, available: 18, board: 'BREAKFAST' as const },
-      { name: 'হারাম-ভিউ স্যুট', capacity: 2, pricePerNight: 780, available: 9, board: 'HALF_BOARD' as const },
-      { name: 'রয়্যাল ফ্যামিলি স্যুট', capacity: 6, pricePerNight: 1450, available: 3, board: 'FULL_BOARD' as const },
-    ],
-  },
-  {
-    slug: 'dar-al-eiman-royal', name: 'দার আল ঈমান রয়্যাল', category: 3, city: 'MAKKAH' as const,
-    address: 'ইব্রাহিম আল খলিল রোড, মক্কা',
-    distanceFromHaram: 'হারাম থেকে ৮৫০ মিটার হাঁটা',
-    images: [IMG.haramAerial, IMG.kaabaIhramDay, IMG.kaabaDayCrowd],
-    cover: IMG.haramAerial,
-    description: 'বাজেট উমরাহ গ্রুপগুলির কাছে জনপ্রিয় পরিষ্কার, সাশ্রয়ী ৩-তারকা হোটেল।',
-    facilities: ['ফ্রি হারাম শাটল', 'জায়নামাজ', 'হালাল রেস্তোরাঁ', '২৪/৭ রিসেপশন', 'লবিতে ফ্রি ওয়াই-ফাই', 'গ্রুপ রেট'],
-    meals: 'নাশতা ও রাতের খাবার বুফে',
-    checkInDate: new Date('2026-02-15'), checkOutDate: new Date('2026-02-22'),
-    totalRooms: 320, pricePerNight: 78,
-    rating: 4.3, reviewsCount: 980, bookingsCount: 8240, status: 'ACTIVE' as const, featured: false,
-    notes: 'ইকোনমি/বাজেট প্যাকেজের জন্য ডিফল্ট।',
-    roomTypes: [
-      { name: 'কোয়াড শেয়ার', capacity: 4, pricePerNight: 78, available: 64, board: 'HALF_BOARD' as const },
-      { name: 'ট্রিপল শেয়ার', capacity: 3, pricePerNight: 95, available: 42, board: 'HALF_BOARD' as const },
-      { name: 'ডাবল রুম', capacity: 2, pricePerNight: 120, available: 26, board: 'HALF_BOARD' as const },
-    ],
-  },
-  {
-    slug: 'pullman-zamzam-madinah', name: 'পুলম্যান জমজম মদিনা', category: 4, city: 'MADINAH' as const,
-    address: 'কিং ফয়সাল রোড, কেন্দ্রীয় মদিনা',
-    distanceFromHaram: 'মসজিদে নববী থেকে ১৮০ মিটার',
-    images: [IMG.greenDomeMinarets, IMG.nabawiUmbrellaGolden, IMG.nabawiDay, IMG.greenDomeClose],
-    cover: IMG.greenDomeMinarets,
-    description: 'রওজা থেকে কয়েক মিনিট দূরে প্রিমিয়াম ৪-তারকা সম্পত্তি।',
-    facilities: ['সরাসরি নববী অ্যাক্সেস', 'গ্রুপ মিটিং হল', 'নামাজের আজান সম্প্রচার', 'হালাল বুফে', 'হুইলচেয়ার অ্যাক্সেস', 'কনসিয়ার্জ', 'বহুভাষিক স্টাফ'],
-    meals: 'হাফ-বোর্ড বুফে',
-    checkInDate: new Date('2026-02-22'), checkOutDate: new Date('2026-02-28'),
-    totalRooms: 410, pricePerNight: 195,
-    rating: 4.7, reviewsCount: 1620, bookingsCount: 6240, status: 'ACTIVE' as const, featured: true,
-    notes: 'স্ট্যান্ডার্ড ও প্রিমিয়াম টিয়ার জুড়ে সর্বাধিক বুক করা মদিনা হোটেল।',
-    roomTypes: [
-      { name: 'ট্রিপল শেয়ার', capacity: 3, pricePerNight: 195, available: 36, board: 'HALF_BOARD' as const },
-      { name: 'ডাবল ডিলাক্স', capacity: 2, pricePerNight: 245, available: 22, board: 'HALF_BOARD' as const },
-      { name: 'ফ্যামিলি স্যুট (৪ জন)', capacity: 4, pricePerNight: 365, available: 8, board: 'FULL_BOARD' as const },
-    ],
-  },
-  {
-    slug: 'the-oberoi-madinah', name: 'দ্য ওবেরয় মদিনা', category: 5, city: 'MADINAH' as const,
-    address: 'খালিদ বিন আল ওয়ালিদ রোড, কেন্দ্রীয় মদিনা',
-    distanceFromHaram: 'মসজিদে নববী থেকে ১২০ মিটার',
-    images: [IMG.greenDomeClose, IMG.greenDomeStarFrame, IMG.nabawiNight, IMG.nabawiCoupleArches],
-    cover: IMG.greenDomeClose,
-    description: 'নববী-ভিউ স্যুটসহ অতি-লাক্সারি ৫-তারকা হোটেল।',
-    facilities: ['নববী-ভিউ স্যুট', 'বাটলার সেবা', 'স্পা', 'ফাইন হালাল ডাইনিং', 'প্রিমিয়াম নামাজ রুম', 'ভ্যালেট', '২৪/৭ ইন-রুম ডাইনিং', 'লিমো বিমানবন্দর স্থানান্তর'],
-    meals: 'ফুল-বোর্ড আ লা কার্টে',
-    checkInDate: new Date('2026-02-22'), checkOutDate: new Date('2026-02-28'),
-    totalRooms: 142, pricePerNight: 480,
-    rating: 4.9, reviewsCount: 720, bookingsCount: 1840, status: 'ACTIVE' as const, featured: true,
-    notes: 'প্রিমিয়াম / ভিআইপি / লাক্সারি প্যাকেজ ডিফল্ট।',
-    roomTypes: [
-      { name: 'ডিলাক্স রুম', capacity: 2, pricePerNight: 480, available: 14, board: 'BREAKFAST' as const },
-      { name: 'নববী-ভিউ স্যুট', capacity: 2, pricePerNight: 720, available: 6, board: 'HALF_BOARD' as const },
-      { name: 'রয়্যাল স্যুট (৪ জন)', capacity: 4, pricePerNight: 1280, available: 2, board: 'FULL_BOARD' as const },
-    ],
-  },
-  {
-    slug: 'olayan-al-madinah', name: 'ওলায়ান আল মদিনা', category: 3, city: 'MADINAH' as const,
-    address: 'কেন্দ্রীয় মদিনা, বাব আল সালামের কাছে',
-    distanceFromHaram: 'মসজিদে নববী থেকে ৪৫০ মিটার',
-    images: [IMG.nabawiDay, IMG.nabawiUmbrellas, IMG.nabawiInterior],
-    cover: IMG.nabawiDay,
-    description: 'বাজেট হাজীদের জন্য সাশ্রয়ী ৩-তারকা হোটেল।',
-    facilities: ['ফ্রি ওয়াই-ফাই', 'হালাল নাশতা', '২৪/৭ রিসেপশন', 'গ্রুপ রেট', 'বহুভাষিক স্টাফ', 'লন্ড্রি (অর্থপ্রদেয়)'],
-    meals: 'শুধুমাত্র নাশতা',
-    checkInDate: new Date('2026-02-22'), checkOutDate: new Date('2026-02-28'),
-    totalRooms: 280, pricePerNight: 65,
-    rating: 4.2, reviewsCount: 640, bookingsCount: 4380, status: 'ACTIVE' as const, featured: false,
-    notes: 'ইকোনমি হজ্জ ও বাজেট উমরাহর জন্য ডিফল্ট।',
-    roomTypes: [
-      { name: 'কোয়াড শেয়ার', capacity: 4, pricePerNight: 65, available: 52, board: 'BREAKFAST' as const },
-      { name: 'ট্রিপল শেয়ার', capacity: 3, pricePerNight: 82, available: 38, board: 'BREAKFAST' as const },
-      { name: 'ডাবল রুম', capacity: 2, pricePerNight: 110, available: 24, board: 'BREAKFAST' as const },
-    ],
-  },
-]
-
-const flightSeeds = [
-  { slug: 'biman-dac-jed-bg-1041', airlineName: 'বিমান বাংলাদেশ এয়ারলাইন্স', airlineLogo: 'BG', flightNumber: 'BG 1041', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'ঢাকা', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-02-15'), departureTime: '02:30', arrivalDate: new Date('2026-02-15'), arrivalTime: '07:45', transits: [], transitDuration: 'নন-স্টপ', totalDuration: '৮ ঘণ্টা ১৫ মিনিট', cabinClass: 'ECONOMY' as const, baggageAllowance: '৩০ কেজি চেকড + ৭ কেজি কেবিন', mealInfo: 'গরম হালাল খাবার + পানীয়', seatsTotal: 290, seatsAvailable: 84, bookingStatus: 'OPEN' as const, price: 745, taxes: 95, discount: 0, notes: 'নিবেদিত উমরাহ মৌসুমের সেবা।', status: 'ACTIVE' as const, featured: true, rating: 4.5, reviewsCount: 412, bookingsCount: 2890, publishedAt: new Date('2025-11-02') },
-  { slug: 'saudia-dac-jed-sv-805', airlineName: 'সৌদিয়া', airlineLogo: 'SV', flightNumber: 'SV 805', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'ঢাকা', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-02-15'), departureTime: '06:15', arrivalDate: new Date('2026-02-15'), arrivalTime: '11:20', transits: [], transitDuration: 'নন-স্টপ', totalDuration: '৮ ঘণ্টা ০৫ মিনিট', cabinClass: 'ECONOMY' as const, baggageAllowance: '৪৬ কেজি চেকড (২ × ২৩ কেজি) + ৭ কেজি কেবিন', mealInfo: 'হালাল খাবার, খেজুর, আরবি কফি', seatsTotal: 320, seatsAvailable: 38, bookingStatus: 'OPEN' as const, price: 829, taxes: 110, discount: 40, notes: 'সেরা সময়মত পারফরম্যান্স।', status: 'ACTIVE' as const, featured: true, rating: 4.7, reviewsCount: 638, bookingsCount: 4120, publishedAt: new Date('2025-10-18') },
-  { slug: 'emirates-dac-jed-ek-585-via-dxb', airlineName: 'এমিরেটস', airlineLogo: 'EK', flightNumber: 'EK 585 / EK 803', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'ঢাকা', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-02-16'), departureTime: '04:50', arrivalDate: new Date('2026-02-16'), arrivalTime: '14:35', transits: [{ airport: 'দুবাই আন্তর্জাতিক (DXB)', city: 'দুবাই', duration: '২ ঘণ্টা ১০ মিনিট' }], transitDuration: '২ ঘণ্টা ১০ মিনিট', totalDuration: '১২ ঘণ্টা ৪৫ মিনিট', cabinClass: 'ECONOMY_PLUS' as const, baggageAllowance: '৩৫ কেজি চেকড + ৭ কেজি কেবিন', mealInfo: 'দুই হালাল খাবার, আঞ্চলিক মেনু', seatsTotal: 360, seatsAvailable: 142, bookingStatus: 'OPEN' as const, price: 985, taxes: 165, discount: 0, notes: 'DXB হয়ে একক ট্রানজিট।', status: 'ACTIVE' as const, featured: false, rating: 4.8, reviewsCount: 521, bookingsCount: 1980, publishedAt: new Date('2025-09-30') },
-  { slug: 'qatar-dac-jed-qr-635-via-doh', airlineName: 'কাতার এয়ারওয়েজ', airlineLogo: 'QR', flightNumber: 'QR 635 / QR 1170', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'ঢাকা', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-03-01'), departureTime: '01:20', arrivalDate: new Date('2026-03-01'), arrivalTime: '10:05', transits: [{ airport: 'হামাদ আন্তর্জাতিক (DOH)', city: 'দোহা', duration: '১ ঘণ্টা ৫০ মিনিট' }], transitDuration: '১ ঘণ্টা ৫০ মিনিট', totalDuration: '১১ ঘণ্টা ৪৫ মিনিট', cabinClass: 'BUSINESS' as const, baggageAllowance: '৪০ কেজি চেকড + ১২ কেজি কেবিন (বিজনেস)', mealInfo: 'আ লা কার্টে হালাল ডাইনিং, DOH-এ লাউঞ্জ', seatsTotal: 32, seatsAvailable: 6, bookingStatus: 'OPEN' as const, price: 2480, taxes: 240, discount: 100, notes: 'লাই-ফ্ল্যাট সিটসহ বিজনেস কেবিন।', status: 'ACTIVE' as const, featured: true, rating: 4.9, reviewsCount: 287, bookingsCount: 612, publishedAt: new Date('2025-10-05') },
-  { slug: 'turkish-dac-med-tk-713-via-ist', airlineName: 'টার্কিশ এয়ারলাইন্স', airlineLogo: 'TK', flightNumber: 'TK 713 / TK 100', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'প্রিন্স মোহাম্মদ বিন আব্দুল আজিজ (MED)', departureCity: 'ঢাকা', arrivalCity: 'মদিনা', departureDate: new Date('2026-02-20'), departureTime: '09:40', arrivalDate: new Date('2026-02-20'), arrivalTime: '20:25', transits: [{ airport: 'ইস্তাম্বুল বিমানবন্দর (IST)', city: 'ইস্তাম্বুল', duration: '৩ ঘণ্টা ০৫ মিনিট' }], transitDuration: '৩ ঘণ্টা ০৫ মিনিট', totalDuration: '১৩ ঘণ্টা ৪৫ মিনিট', cabinClass: 'ECONOMY' as const, baggageAllowance: '৩০ কেজি চেকড + ৮ কেজি কেবিন', mealInfo: 'দুই হালাল খাবার, তুর্কি আতিথেয়তা', seatsTotal: 280, seatsAvailable: 96, bookingStatus: 'OPEN' as const, price: 895, taxes: 140, discount: 50, notes: 'সরাসরি মদিনায়।', status: 'ACTIVE' as const, featured: true, rating: 4.6, reviewsCount: 348, bookingsCount: 1420, publishedAt: new Date('2025-10-22') },
-  { slug: 'saudia-dac-med-sv-803', airlineName: 'সৌদিয়া', airlineLogo: 'SV', flightNumber: 'SV 803', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'প্রিন্স মোহাম্মদ বিন আব্দুল আজিজ (MED)', departureCity: 'ঢাকা', arrivalCity: 'মদিনা', departureDate: new Date('2026-03-10'), departureTime: '23:55', arrivalDate: new Date('2026-03-11'), arrivalTime: '05:30', transits: [], transitDuration: 'নন-স্টপ', totalDuration: '৮ ঘণ্টা ৩৫ মিনিট', cabinClass: 'ECONOMY' as const, baggageAllowance: '৪৬ কেজি চেকড (২ × ২৩ কেজি) + ৭ কেজি কেবিন', mealInfo: 'হালাল খাবার, খেজুর, জমজম পানি', seatsTotal: 300, seatsAvailable: 12, bookingStatus: 'OPEN' as const, price: 875, taxes: 115, discount: 0, notes: 'একমাত্র নন-স্টপ ঢাকা → মদিনা।', status: 'ACTIVE' as const, featured: true, rating: 4.8, reviewsCount: 712, bookingsCount: 3260, publishedAt: new Date('2025-10-12') },
-  { slug: 'flydubai-dac-jed-fz-552-via-dxb', airlineName: 'ফ্লাইদুবাই', airlineLogo: 'FZ', flightNumber: 'FZ 552 / FZ 815', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'ঢাকা', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-02-25'), departureTime: '15:30', arrivalDate: new Date('2026-02-26'), arrivalTime: '02:40', transits: [{ airport: 'দুবাই আন্তর্জাতিক (DXB)', city: 'দুবাই', duration: '৩ ঘণ্টা ৪৫ মিনিট' }], transitDuration: '৩ ঘণ্টা ৪৫ মিনিট', totalDuration: '১৪ ঘণ্টা ১০ মিনিট', cabinClass: 'ECONOMY' as const, baggageAllowance: '২০ কেজি চেকড + ৭ কেজি কেবিন', mealInfo: 'হালাল স্ন্যাক', seatsTotal: 195, seatsAvailable: 110, bookingStatus: 'OPEN' as const, price: 620, taxes: 95, discount: 30, notes: 'বাজেট অপশন।', status: 'ACTIVE' as const, featured: false, rating: 4.2, reviewsCount: 196, bookingsCount: 820, publishedAt: new Date('2025-11-10') },
-  { slug: 'biman-cgp-jed-bg-7011-via-dac', airlineName: 'বিমান বাংলাদেশ এয়ারলাইন্স', airlineLogo: 'BG', flightNumber: 'BG 7011 / BG 1041', departureAirport: 'শাহ আমানত আন্তর্জাতিক (CGP)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'চট্টগ্রাম', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-02-15'), departureTime: '22:10', arrivalDate: new Date('2026-02-16'), arrivalTime: '07:45', transits: [{ airport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', city: 'ঢাকা', duration: '৩ ঘণ্টা ০৫ মিনিট' }], transitDuration: '৩ ঘণ্টা ০৫ মিনিট', totalDuration: '১২ ঘণ্টা ৩৫ মিনিট', cabinClass: 'ECONOMY' as const, baggageAllowance: '৩০ কেজি চেকড + ৭ কেজি কেবিন', mealInfo: 'গরম হালাল খাবার', seatsTotal: 248, seatsAvailable: 64, bookingStatus: 'OPEN' as const, price: 795, taxes: 105, discount: 0, notes: 'সংক্ষিপ্ত DAC ট্রানজিট।', status: 'ACTIVE' as const, featured: false, rating: 4.3, reviewsCount: 156, bookingsCount: 680, publishedAt: new Date('2025-11-05') },
-  { slug: 'qatar-cgp-jed-qr-639-via-doh', airlineName: 'কাতার এয়ারওয়েজ', airlineLogo: 'QR', flightNumber: 'QR 639 / QR 1170', departureAirport: 'শাহ আমানত আন্তর্জাতিক (CGP)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'চট্টগ্রাম', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-03-05'), departureTime: '03:35', arrivalDate: new Date('2026-03-05'), arrivalTime: '13:15', transits: [{ airport: 'হামাদ আন্তর্জাতিক (DOH)', city: 'দোহা', duration: '২ ঘণ্টা ২৫ মিনিট' }], transitDuration: '২ ঘণ্টা ২৫ মিনিট', totalDuration: '১২ ঘণ্টা ৪০ মিনিট', cabinClass: 'ECONOMY_PLUS' as const, baggageAllowance: '৩৫ কেজি চেকড + ১০ কেজি কেবিন', mealInfo: 'হালাল গরম খাবার', seatsTotal: 84, seatsAvailable: 28, bookingStatus: 'OPEN' as const, price: 1140, taxes: 175, discount: 60, notes: 'প্রিমিয়াম ইকোনমি।', status: 'ACTIVE' as const, featured: false, rating: 4.8, reviewsCount: 184, bookingsCount: 410, publishedAt: new Date('2025-10-25') },
-  { slug: 'emirates-cgp-jed-ek-587-via-dxb', airlineName: 'এমিরেটস', airlineLogo: 'EK', flightNumber: 'EK 587 / EK 803', departureAirport: 'শাহ আমানত আন্তর্জাতিক (CGP)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'চট্টগ্রাম', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-04-12'), departureTime: '23:55', arrivalDate: new Date('2026-04-13'), arrivalTime: '14:35', transits: [{ airport: 'দুবাই আন্তর্জাতিক (DXB)', city: 'দুবাই', duration: '৪ ঘণ্টা ১৫ মিনিট' }], transitDuration: '৪ ঘণ্টা ১৫ মিনিট', totalDuration: '১৭ ঘণ্টা ৪০ মিনিট', cabinClass: 'BUSINESS' as const, baggageAllowance: '৪০ কেজি চেকড + ১২ কেজি কেবিন (বিজনেস)', mealInfo: 'আ লা কার্টে হালাল ডাইনিং, DXB-এ লাউঞ্জ', seatsTotal: 24, seatsAvailable: 0, bookingStatus: 'SOLDOUT' as const, price: 2780, taxes: 260, discount: 0, notes: 'বর্তমানে সম্পূর্ণ বিক্রি।', status: 'ACTIVE' as const, featured: false, rating: 4.9, reviewsCount: 92, bookingsCount: 218, publishedAt: new Date('2025-09-15') },
-  { slug: 'turkish-dac-jed-tk-713-via-ist', airlineName: 'টার্কিশ এয়ারলাইন্স', airlineLogo: 'TK', flightNumber: 'TK 713 / TK 84', departureAirport: 'হযরত শাহজালাল আন্তর্জাতিক (DAC)', arrivalAirport: 'কিং আব্দুল আজিজ আন্তর্জাতিক (JED)', departureCity: 'ঢাকা', arrivalCity: 'জেদ্দা', departureDate: new Date('2026-05-10'), departureTime: '09:40', arrivalDate: new Date('2026-05-10'), arrivalTime: '18:15', transits: [{ airport: 'ইস্তাম্বুল বিমানবন্দর (IST)', city: 'ইস্তাম্বুল', duration: '২ ঘণ্টা ৪০ মিনিট' }], transitDuration: '২ ঘণ্টা ৪০ মিনিট', totalDuration: '১১ ঘণ্টা ৩৫ মিনিট', cabinClass: 'FIRST' as const, baggageAllowance: '৫০ কেজি চেকড + ১৫ কেজি কেবিন (ফার্স্ট)', mealInfo: 'অনবোর্ড শেফ, আ লা কার্টে', seatsTotal: 8, seatsAvailable: 8, bookingStatus: 'OPEN' as const, price: 4250, taxes: 320, discount: 0, notes: 'ফার্স্ট ক্লাস।', status: 'INACTIVE' as const, featured: false, rating: 5.0, reviewsCount: 18, bookingsCount: 42, publishedAt: new Date('2025-11-12') },
 ]
 
 const transportSeeds = [
@@ -584,14 +429,10 @@ async function main() {
   await prisma.userDocument.deleteMany()
   await prisma.packageItineraryDay.deleteMany()
   await prisma.packageFAQ.deleteMany()
-  await prisma.hotelRoomType.deleteMany()
-  await prisma.flightTransit.deleteMany()
   await prisma.heroStat.deleteMany()
   await prisma.heroReflectionItem.deleteMany()
   await prisma.siteContent.deleteMany()
   await prisma.transport.deleteMany()
-  await prisma.flight.deleteMany()
-  await prisma.hotel.deleteMany()
   await prisma.package.deleteMany()
   await prisma.user.deleteMany()
   await prisma.blog.deleteMany()
@@ -640,27 +481,6 @@ async function main() {
     packageIdBySlug.set(p.slug, created.id)
   }
   console.log(`  Packages: ${packageSeeds.length}`)
-
-  // 4. Hotels
-  for (const h of hotelSeeds) {
-    const { roomTypes, ...data } = h
-    await prisma.hotel.create({
-      data: { ...data, roomTypes: { create: roomTypes } },
-    })
-  }
-  console.log(`  Hotels: ${hotelSeeds.length}`)
-
-  // 5. Flights
-  for (const f of flightSeeds) {
-    const { transits, ...data } = f
-    await prisma.flight.create({
-      data: {
-        ...data,
-        transits: { create: transits.map((t, i) => ({ ...t, position: i })) },
-      },
-    })
-  }
-  console.log(`  Flights: ${flightSeeds.length}`)
 
   // 6. Transports
   for (const t of transportSeeds) {

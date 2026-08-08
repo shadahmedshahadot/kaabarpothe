@@ -8,17 +8,43 @@ import { toast } from 'sonner'
 import { PageTitle } from '@/components/layouts/dashboard-shell'
 import { DataTable } from '@/features/admin/components/data-table'
 import { Badge } from '@/components/ui/badge'
+import { Select } from '@/components/ui/input'
 import { formatCurrency } from '@/utils/format'
 import {
   useGetPackagesQuery,
   useDeletePackageMutation,
   type PackageDto,
+  type PackageListQuery,
 } from '@/redux/fetchres/package/packageApi'
 
+const LIMIT = 10
+
 export default function AdminPackagesPage() {
-  const { data, isLoading, isError } = useGetPackagesQuery({ limit: 100 })
+  const [page, setPage] = useState(1)
+  const [search, setSearch] = useState('')
+  const [type, setType] = useState<'' | 'HAJJ' | 'UMRAH'>('')
+  const [tier, setTier] = useState<'' | PackageDto['tier']>('')
+  const [status, setStatus] = useState<'' | PackageDto['status']>('')
+
+  const query: PackageListQuery = {
+    page,
+    limit: LIMIT,
+    ...(search ? { search } : {}),
+    ...(type ? { type } : {}),
+    ...(tier ? { tier } : {}),
+    ...(status ? { status } : {}),
+  }
+
+  const { data, isLoading, isError, isFetching } = useGetPackagesQuery(query)
   const [deletePackage] = useDeletePackageMutation()
   const [pendingId, setPendingId] = useState<string | null>(null)
+
+  const total = data?.meta?.total ?? data?.data?.length ?? 0
+
+  const handleFilterChange = <T,>(setter: (v: T) => void) => (v: T) => {
+    setter(v)
+    setPage(1)
+  }
 
   const onDelete = async (pkg: PackageDto) => {
     const ok = window.confirm(`"${pkg.name}" মুছে ফেলবেন?`)
@@ -58,7 +84,37 @@ export default function AdminPackagesPage() {
       ) : (
         <DataTable<PackageDto>
           data={data?.data ?? []}
+          page={page}
+          limit={LIMIT}
+          total={total}
+          onPageChange={setPage}
+          search={search}
+          onSearchChange={v => { setSearch(v); setPage(1) }}
+          isFetching={isFetching}
           searchPlaceholder="প্যাকেজ অনুসন্ধান…"
+          filters={
+            <>
+              <Select value={type} onChange={e => handleFilterChange<'' | 'HAJJ' | 'UMRAH'>(setType)(e.target.value as '' | 'HAJJ' | 'UMRAH')} className="w-auto min-w-[110px]">
+                <option value="">সকল ধরন</option>
+                <option value="HAJJ">হজ্জ</option>
+                <option value="UMRAH">উমরাহ</option>
+              </Select>
+              <Select value={tier} onChange={e => handleFilterChange<'' | PackageDto['tier']>(setTier)(e.target.value as '' | PackageDto['tier'])} className="w-auto min-w-[120px]">
+                <option value="">সকল স্তর</option>
+                <option value="BUDGET">বাজেট</option>
+                <option value="ECONOMY">ইকোনমি</option>
+                <option value="STANDARD">স্ট্যান্ডার্ড</option>
+                <option value="PREMIUM">প্রিমিয়াম</option>
+                <option value="VIP">ভিআইপি</option>
+                <option value="LUXURY">লাক্সারি</option>
+              </Select>
+              <Select value={status} onChange={e => handleFilterChange<'' | PackageDto['status']>(setStatus)(e.target.value as '' | PackageDto['status'])} className="w-auto min-w-[120px]">
+                <option value="">সকল অবস্থা</option>
+                <option value="PUBLISHED">প্রকাশিত</option>
+                <option value="DRAFT">খসড়া</option>
+              </Select>
+            </>
+          }
           columns={[
             {
               key: 'name',

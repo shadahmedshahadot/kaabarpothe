@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Star, Clock, Users, MapPin, ArrowRight } from 'lucide-react'
+import { Star, Clock, Users, ArrowRight } from 'lucide-react'
 import { Badge } from './badge'
 import { formatCurrency } from '@/utils/format'
 import type { Package } from '@/data/packages'
@@ -69,7 +69,6 @@ export function PackageCard({ pkg, index = 0 }: { pkg: Package; index?: number }
         <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
           <div className="flex items-center gap-2 text-foreground/70"><Clock className="w-4 h-4 text-primary" /> {pkg.duration} দিন</div>
           <div className="flex items-center gap-2 text-foreground/70"><Users className="w-4 h-4 text-accent" /> {pkg.groupSize}</div>
-          <div className="flex items-center gap-2 text-foreground/70 col-span-2"><MapPin className="w-4 h-4 text-secondary" /> {pkg.hotelMakkah.distance}</div>
         </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-border">

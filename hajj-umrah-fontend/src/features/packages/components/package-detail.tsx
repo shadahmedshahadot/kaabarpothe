@@ -8,7 +8,6 @@ import { PackageSummary } from './detail/package-summary'
 import { OverviewTab } from './detail/overview-tab'
 import { ItineraryTab } from './detail/itinerary-tab'
 import { InclusionsTab } from './detail/inclusions-tab'
-import { HotelsTab } from './detail/hotels-tab'
 import { FAQTab } from './detail/faq-tab'
 import { PackageTrustStrip } from './detail/trust-strip'
 
@@ -28,14 +27,12 @@ export function PackageDetail({ pkg }: { pkg: Package }) {
             <TabsTrigger value="overview">সংক্ষিপ্ত বিবরণ</TabsTrigger>
             <TabsTrigger value="itinerary">ভ্রমণসূচি</TabsTrigger>
             <TabsTrigger value="inclusions">অন্তর্ভুক্তি</TabsTrigger>
-            <TabsTrigger value="hotels">হোটেল</TabsTrigger>
             <TabsTrigger value="faq">প্রশ্নোত্তর</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview"><OverviewTab pkg={pkg} /></TabsContent>
           <TabsContent value="itinerary"><ItineraryTab pkg={pkg} /></TabsContent>
           <TabsContent value="inclusions"><InclusionsTab pkg={pkg} /></TabsContent>
-          <TabsContent value="hotels"><HotelsTab pkg={pkg} /></TabsContent>
           <TabsContent value="faq"><FAQTab pkg={pkg} /></TabsContent>
         </Tabs>
 

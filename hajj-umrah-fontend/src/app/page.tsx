@@ -2,8 +2,6 @@ import { Header } from '@/components/layouts/site-header'
 import { Hero } from '@/features/public/components/sections/hero-section'
 import { TrustSection } from '@/features/public/components/sections/trust-section'
 import { FeaturedPackages } from '@/features/public/components/sections/featured-packages'
-import { FeaturedFlights } from '@/features/public/components/sections/featured-flights'
-import { FeaturedHotels } from '@/features/public/components/sections/featured-hotels'
 import { ProcessSection } from '@/features/public/components/sections/process-section'
 import { DestinationsSection } from '@/features/public/components/sections/destinations-section'
 import { Testimonials } from '@/features/public/components/sections/testimonials-section'
@@ -194,8 +192,6 @@ export default function Home() {
           <Hero />
           <TrustSection />
           <FeaturedPackages />
-          <FeaturedHotels />
-          <FeaturedFlights />
           <ProcessSection />
           <DestinationsSection />
           <Testimonials />
