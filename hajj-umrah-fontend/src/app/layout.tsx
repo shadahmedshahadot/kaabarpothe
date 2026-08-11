@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { Safelist } from '@/components/common/safelist'
+import { GoogleAnalytics } from '@/components/common/google-analytics'
 import { rootMetadata, rootViewport } from '@/constants/metadata'
 import GlobalProvider from '@/providers/globalProvider'
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </a>
         <GlobalProvider>{children}</GlobalProvider>
         <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   )

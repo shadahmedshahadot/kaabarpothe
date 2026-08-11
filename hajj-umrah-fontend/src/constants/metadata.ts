@@ -17,10 +17,10 @@ export const rootMetadata: Metadata = {
   classification: 'Hajj & Umrah Travel Agency',
   referrer: 'origin-when-cross-origin',
   alternates: {
-    canonical: '/',
+    canonical: SITE.url,
     languages: {
-      'bn-BD': '/',
-      'x-default': '/',
+      'bn-BD': SITE.url,
+      'x-default': SITE.url,
     },
   },
   openGraph: {

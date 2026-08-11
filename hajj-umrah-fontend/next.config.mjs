@@ -8,13 +8,13 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 const cspDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://*.vercel-insights.com https://www.youtube.com https://s.ytimg.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://*.vercel-insights.com https://www.youtube.com https://s.ytimg.com https://www.googletagmanager.com https://www.google-analytics.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "img-src 'self' data: blob: https:",
+  "img-src 'self' data: blob: https: https://www.google-analytics.com https://www.googletagmanager.com",
   "font-src 'self' data: https://fonts.gstatic.com",
   isDev
     ? "connect-src 'self' http://localhost:9000 ws://localhost:* https: wss:"
-    : "connect-src 'self' https: wss:",
+    : "connect-src 'self' https: wss: https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
   "frame-src 'self' https://www.google.com https://www.youtube.com https://www.youtube-nocookie.com https://youtube.com",
   "media-src 'self' blob: https:",
   "object-src 'none'",
@@ -30,6 +30,9 @@ const securityHeaders = [
   { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'X-DNS-Prefetch-Control', value: 'on' },
+  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+  { key: 'Cross-Origin-Resource-Policy', value: 'same-site' },
+  { key: 'Origin-Agent-Cluster', value: '?1' },
   {
     key: 'Permissions-Policy',
     value: 'camera=(), microphone=(), geolocation=(self), payment=(self), interest-cohort=()',

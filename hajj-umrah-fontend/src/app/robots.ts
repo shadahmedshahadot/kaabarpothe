@@ -13,7 +13,6 @@ export default function robots(): MetadataRoute.Robots {
     '/booking/*',
     '/api',
     '/api/*',
-    '/_next/',
   ]
 
   const aiBots = [
