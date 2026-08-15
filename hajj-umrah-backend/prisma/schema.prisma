@@ -754,3 +754,94 @@ model HeroReflectionItem {
   @@unique([siteContentKey, position])
   @@map("hero_reflection_items")
 }
+
+// =================================================================
+//  SEO (GlobalSEO singleton + PageSEO per static page/locale)
+// =================================================================
+
+model GlobalSEO {
+  key                    String   @id @default("global")
+  siteName               String   @default("")
+  defaultTitle           String   @default("")
+  defaultTitleTemplate   String   @default("%s | Site")
+  defaultDescription     String   @default("")
+  defaultKeywords        String[]
+  defaultOgImage         String?
+  defaultOgImageAlt      String?
+  defaultOgType          String   @default("website")
+  defaultOgSiteName      String?
+  defaultOgLocale        String   @default("bn_BD")
+  defaultTwitterCard     String   @default("summary_large_image")
+  defaultTwitterSite     String?
+  defaultTwitterCreator  String?
+  defaultTwitterImage    String?
+  defaultRobots          String   @default("index,follow")
+  themeColor             String?
+  themeColorDark         String?
+  siteUrl                String   @default("")
+  favicon                String?
+  appleTouchIcon         String?
+  organizationJsonLd     Json?
+  websiteJsonLd          Json?
+  verificationGoogle     String?
+  verificationBing       String?
+  verificationYandex     String?
+  verificationFacebook   String?
+  updatedAt              DateTime @updatedAt
+
+  @@map("global_seo")
+}
+
+model PageSEO {
+  id                    String   @id @default(uuid())
+  pageKey               String
+  pagePath              String
+  locale                String   @default("bn-BD")
+  pageName              String
+  isSystem              Boolean  @default(false)
+
+  title                 String?
+  metaDescription       String?
+  keywords              String[]
+  robots                String?
+  robotsMaxSnippet      Int?
+  robotsMaxImagePreview String?
+  robotsMaxVideoPreview Int?
+  canonicalUrl          String?
+  canonicalAuto         Boolean  @default(true)
+  author                String?
+  language              String?
+  themeColor            String?
+
+  ogTitle               String?
+  ogDescription         String?
+  ogImage               String?
+  ogImageAlt            String?
+  ogUrl                 String?
+  ogType                String?
+  ogSiteName            String?
+  ogLocale              String?
+
+  twitterCard           String?
+  twitterTitle          String?
+  twitterDescription    String?
+  twitterImage          String?
+  twitterImageAlt       String?
+  twitterSite           String?
+  twitterCreator        String?
+
+  structuredData        Json?
+  customMeta            Json?
+  breadcrumbs           Json?
+
+  seoStatus             String   @default("PUBLISHED")
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@unique([pagePath, locale])
+  @@unique([pageKey, locale])
+  @@index([pagePath])
+  @@index([locale])
+  @@map("page_seo")
+}

@@ -1,15 +1,16 @@
-import type { Metadata } from 'next'
 import { LegalPage } from '@/components/common/legal-page'
+import StructuredData from '@/components/seo/StructuredData'
+import { generateSEOMetadata, resolvePageSEO } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'গোপনীয়তা নীতি',
-  description: 'কাবার পথে আপনার তথ্য কীভাবে সংগ্রহ, ব্যবহার ও সুরক্ষা করে — গোপনীয়তা নীতি।',
-  alternates: { canonical: '/privacy' },
-  robots: { index: true, follow: true },
+export async function generateMetadata() {
+  return generateSEOMetadata('/privacy')
 }
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const { structuredData } = await resolvePageSEO('/privacy')
   return (
+    <>
+    <StructuredData data={structuredData} keyPrefix="privacy" />
     <LegalPage
       eyebrow="আইনি"
       title="গোপনীয়তা নীতি"
@@ -26,5 +27,6 @@ export default function PrivacyPolicyPage() {
         { heading: 'যোগাযোগ', body: 'গোপনীয়তা সংক্রান্ত প্রশ্নের জন্য, privacy@kaabarpothe.com এ ইমেইল করুন বা লিখুন: প্রাইভেসি অফিসার, কাবার পথে ট্রাভেলস, ধানমন্ডি ২৭, লেভেল ৭, শপ্তক স্কয়ার, প্লট ৩৮০, রোড ২৭, ঢাকা ১২০৭।' },
       ]}
     />
+    </>
   )
 }

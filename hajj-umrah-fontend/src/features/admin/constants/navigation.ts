@@ -1,6 +1,6 @@
 import {
   LayoutDashboard, Package, Calendar, Users, FileText, Star, ImageIcon, MessageSquare,
-  CreditCard, BarChart3, Shield, Settings, Receipt, Bus,
+  CreditCard, BarChart3, Shield, Settings, Receipt, Bus, Search,
 } from 'lucide-react'
 import type { NavGroup } from '@/components/layouts/dashboard-shell'
 import { ROUTES } from '@/constants'
@@ -34,6 +34,12 @@ export const ADMIN_NAV_GROUPS: NavGroup[] = [
       { label: 'Payments', href: ROUTES.admin.payments, Icon: CreditCard },
       { label: 'Invoices', href: ROUTES.admin.invoices, Icon: Receipt },
       { label: 'Reports', href: ROUTES.admin.reports, Icon: BarChart3 },
+    ],
+  },
+  {
+    label: 'Marketing',
+    items: [
+      { label: 'SEO Management', href: ROUTES.admin.seo.root, Icon: Search },
     ],
   },
   {

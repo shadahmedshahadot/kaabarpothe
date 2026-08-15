@@ -1,7 +1,11 @@
 import type { MetadataRoute } from 'next'
 import { SITE } from '@/constants/site'
+import { fetchGlobalSEO } from '@/lib/seo'
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const global = await fetchGlobalSEO()
+  const baseUrl = (global?.siteUrl || SITE.url).replace(/\/$/, '')
+
   const disallow = [
     '/admin',
     '/admin/*',
@@ -42,7 +46,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: '*', allow: '/', disallow },
       ...aiBots.map(userAgent => ({ userAgent, allow: '/', disallow })),
     ],
-    sitemap: `${SITE.url}/sitemap.xml`,
-    host: SITE.url,
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   }
 }

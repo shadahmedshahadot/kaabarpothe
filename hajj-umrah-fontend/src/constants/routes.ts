@@ -44,6 +44,12 @@ export const ROUTES = {
       hero: '/admin/content/hero',
       faqs: '/admin/content/faqs',
     },
+    seo: {
+      root: '/admin/seo',
+      global: '/admin/seo/global',
+      edit: (id: string) => `/admin/seo/${id}/edit`,
+      new: '/admin/seo/new',
+    },
   },
   pilgrim: {
     root: '/pilgrim',

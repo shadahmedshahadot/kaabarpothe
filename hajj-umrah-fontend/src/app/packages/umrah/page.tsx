@@ -1,81 +1,19 @@
-import type { Metadata } from 'next'
 import { PageShell, PageHero } from '@/components/layouts/page-shell'
 import { PackageListing } from '@/features/packages/components/package-listing'
 import { BreadcrumbJsonLd } from '@/components/common'
-import { SITE } from '@/constants/site'
+import StructuredData from '@/components/seo/StructuredData'
+import { generateSEOMetadata, resolvePageSEO } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'উমরাহ প্যাকেজ ২০২৬',
-  description: 'সারা বছরব্যাপী বাজেট, ইকোনমি, প্রিমিয়াম এবং লাক্সারি উমরাহ প্যাকেজ। আলেম পরিচালিত গ্রুপ, হারামের কাছের হোটেল, সৌদি মন্ত্রণালয় অনুমোদিত।',
-  keywords: ['উমরাহ প্যাকেজ', 'উমরাহ ২০২৬', 'Umrah package Bangladesh', 'উমরাহ এজেন্সি ঢাকা', 'রমজান উমরাহ'],
-  alternates: { canonical: '/packages/umrah' },
-  openGraph: {
-    title: 'উমরাহ প্যাকেজ ২০২৬ | কাবার পথে',
-    description: 'বাজেট থেকে লাক্সারি — সারা বছরব্যাপী উমরাহ প্যাকেজ।',
-    url: '/packages/umrah',
-  },
+export async function generateMetadata() {
+  return generateSEOMetadata('/packages/umrah')
 }
 
-const umrahFaqLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'উমরাহ কী?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'উমরাহ হলো একটি ছোট পবিত্র যাত্রা যা বছরের যেকোনো সময় পালন করা যায়, হজ্জের বিপরীতে যা শুধুমাত্র যিলহজ্জ মাসে হয়। উমরাহ ইহরাম, তাওয়াফ, সাঈ এবং হলক/তাকসীর অন্তর্ভুক্ত।',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'রমজানে উমরাহ পালন করলে কত সওয়াব?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'রাসূলুল্লাহ ﷺ বলেছেন: "রমজানে উমরাহ একটি হজ্জের সমান।" (বুখারি ১৭৮২)। রমজান উমরাহ বুকিং দ্রুত পূর্ণ হয় — ৮-১২ মাস আগে বুক করার সুপারিশ।',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'উমরাহ প্যাকেজের সময়কাল কত?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'সাধারণত ৭-১৪ দিন। বাজেট প্যাকেজ ৭ দিন। স্ট্যান্ডার্ড ১০ দিন। প্রিমিয়াম ও লাক্সারি ১২-১৪ দিন, ইস্তাম্বুল বা কায়রো স্টপওভার সহ।',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'উমরাহর জন্য কী কী ডকুমেন্ট লাগে?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'ফেরত তারিখ থেকে ৬+ মাস বৈধ পাসপোর্ট, ২ কপি পাসপোর্ট সাইজ ছবি (সাদা ব্যাকগ্রাউন্ড), মেনিনজাইটিস ACWY টিকা সার্টিফিকেট এবং সম্পূর্ণ আবেদনপত্র।',
-      },
-    },
-  ],
-}
-
-const umrahServiceLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  serviceType: 'Umrah Pilgrimage',
-  name: 'উমরাহ প্যাকেজ ২০২৬',
-  url: `${SITE.url}/packages/umrah`,
-  provider: { '@type': 'TravelAgency', name: SITE.name, url: SITE.url },
-  areaServed: [
-    { '@type': 'Country', name: 'Bangladesh' },
-    { '@type': 'Country', name: 'Saudi Arabia' },
-  ],
-  category: 'Religious Tourism',
-  audience: { '@type': 'PeopleAudience', name: 'Muslim Pilgrims' },
-}
-
-export default function UmrahPackagesPage() {
+export default async function UmrahPackagesPage() {
+  const { structuredData } = await resolvePageSEO('/packages/umrah')
   return (
     <PageShell>
       <BreadcrumbJsonLd items={[{ label: 'উমরাহ প্যাকেজ' }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(umrahServiceLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(umrahFaqLd) }} />
+      <StructuredData data={structuredData} keyPrefix="packages-umrah" />
       <PageHero
         eyebrow="সারা বছরের উমরাহ"
         title="প্রতিটি বাজেট ও মৌসুমের জন্য উমরাহ প্যাকেজ।"

@@ -14,6 +14,7 @@ import { SiteContentRoutes } from '../modules/siteContent/siteContent.routes';
 import { UserDocumentRoutes } from '../modules/userDocument/userDocument.routes';
 import { UploadRoutes } from '../modules/upload/upload.routes';
 import { NotificationRoutes } from '../modules/notification/notification.routes';
+import { SEORoutes } from '../modules/seo/seo.routes';
 
 const router = express.Router();
 
@@ -38,6 +39,7 @@ const routes: Route[] = [
   { path: '/documents', route: UserDocumentRoutes },
   { path: '/uploads', route: UploadRoutes },
   { path: '/notifications', route: NotificationRoutes },
+  { path: '/seo', route: SEORoutes },
 ];
 
 routes.forEach(route => {

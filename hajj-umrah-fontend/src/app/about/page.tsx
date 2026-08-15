@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Heart, Target, Users, Sparkles, Globe, Shield, ArrowRight, BadgeCheck } from 'lucide-react'
@@ -8,17 +7,11 @@ import { AnimatedCounter } from '@/components/ui/animated-counter'
 import { StaggerContainer, StaggerItem } from '@/components/ui/scroll-reveal'
 import { IMG } from '@/data/images'
 import { BreadcrumbJsonLd } from '@/components/common'
-import { SITE } from '@/constants/site'
+import StructuredData from '@/components/seo/StructuredData'
+import { generateSEOMetadata, resolvePageSEO } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'আমাদের সম্পর্কে',
-  description: 'কাবার পথে — আলেম পরিচালিত হজ্জ ও উমরাহ এজেন্সি। আমাদের লক্ষ্য প্রতিটি মুসলিমের জন্য হজ্জ ও উমরাহকে সুলভ, স্বচ্ছ ও আধ্যাত্মিকভাবে অর্থপূর্ণ করা।',
-  alternates: { canonical: '/about' },
-  openGraph: {
-    title: 'আমাদের সম্পর্কে | কাবার পথে',
-    description: 'আলেম পরিচালিত, সৌদি মন্ত্রণালয় লাইসেন্সপ্রাপ্ত হজ্জ ও উমরাহ এজেন্সি।',
-    url: '/about',
-  },
+export async function generateMetadata() {
+  return generateSEOMetadata('/about')
 }
 
 const milestones = [
@@ -44,35 +37,12 @@ const team = [
   { name: 'শায়খ তারিক মাহমুদ', role: 'আলেম বোর্ড প্রধান', bio: 'মদিনা বিশ্ববিদ্যালয়। ১৮ বছরের হজ্জ আলেম।', avatar: 'from-blue-400 to-indigo-500' },
 ]
 
-const aboutLd = {
-  '@context': 'https://schema.org',
-  '@type': 'AboutPage',
-  url: `${SITE.url}/about`,
-  name: 'আমাদের সম্পর্কে — কাবার পথে',
-  description:
-    'কাবার পথে — আলেম পরিচালিত হজ্জ ও উমরাহ এজেন্সি। প্রতিষ্ঠা ২০১৫। ৫০,০০০+ হাজীকে সেবা।',
-  about: {
-    '@type': 'Organization',
-    '@id': `${SITE.url}/#organization`,
-    name: SITE.name,
-    legalName: SITE.legalName,
-    foundingDate: '2015',
-    foundingLocation: { '@type': 'Place', name: 'Dhaka, Bangladesh' },
-    founder: [
-      { '@type': 'Person', name: 'Imam Yusuf Khalil', jobTitle: 'Founder & Scholar' },
-      { '@type': 'Person', name: 'Amina Khalil', jobTitle: 'Co-Founder & Operations' },
-      { '@type': 'Person', name: 'Hamza Khalil', jobTitle: 'Co-Founder & Tech' },
-    ],
-    award: ['Saudi Ministry-Licensed Hajj Operator', '50,000+ Pilgrims Served'],
-    knowsAbout: ['Hajj', 'Umrah', 'Islamic Travel', 'Pilgrimage Operations'],
-  },
-}
-
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { structuredData } = await resolvePageSEO('/about')
   return (
     <PageShell>
       <BreadcrumbJsonLd items={[{ label: 'আমাদের সম্পর্কে' }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutLd) }} />
+      <StructuredData data={structuredData} keyPrefix="about" />
       <PageHero
         eyebrow="আমাদের গল্প"
         title="হাজীদের দ্বারা, হাজীদের জন্য নির্মিত প্ল্যাটফর্ম।"

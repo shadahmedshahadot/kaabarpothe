@@ -1,15 +1,16 @@
-import type { Metadata } from 'next'
 import { LegalPage } from '@/components/common/legal-page'
+import StructuredData from '@/components/seo/StructuredData'
+import { generateSEOMetadata, resolvePageSEO } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'শর্তাবলী',
-  description: 'কাবার পথে সেবা ব্যবহারের শর্তাবলী — বুকিং, পেমেন্ট, বাতিলকরণ ও দায়িত্ব।',
-  alternates: { canonical: '/terms' },
-  robots: { index: true, follow: true },
+export async function generateMetadata() {
+  return generateSEOMetadata('/terms')
 }
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const { structuredData } = await resolvePageSEO('/terms')
   return (
+    <>
+    <StructuredData data={structuredData} keyPrefix="terms" />
     <LegalPage
       eyebrow="আইনি"
       title="শর্তাবলী"
@@ -29,5 +30,6 @@ export default function TermsPage() {
         { heading: 'সংশোধনী', body: 'আমরা যেকোনো সময় এই শর্তাবলী আপডেট করতে পারি। গুরুত্বপূর্ণ পরিবর্তনগুলি ইমেইলের মাধ্যমে জানানো হবে। বিজ্ঞপ্তির পর ব্যবহার চালিয়ে যাওয়া গ্রহণযোগ্যতা গঠন করে।' },
       ]}
     />
+    </>
   )
 }

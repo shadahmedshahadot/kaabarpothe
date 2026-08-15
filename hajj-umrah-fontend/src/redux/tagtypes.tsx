@@ -17,6 +17,8 @@ export const tagTypesList = [
   'bookingTimeline',
   'bookingDocument',
   'bookingActivity',
+  'seoPage',
+  'seoGlobal',
 ] as const
 
 export type TagType = (typeof tagTypesList)[number]
