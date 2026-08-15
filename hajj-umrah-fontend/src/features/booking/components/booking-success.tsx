@@ -59,8 +59,8 @@ export function BookingSuccess({ code }: { code: string }) {
         <div className="bg-card border border-border rounded-3xl p-6 mt-6">
           <h2 className="font-bold text-foreground mb-3">বুকিং সারাংশ</h2>
           <dl className="grid sm:grid-cols-2 gap-3 text-sm">
-            <Row label="প্যাকেজ" value={booking.packageName} />
-            <Row label="ধরন" value={booking.packageType} />
+            <Row label="প্যাকেজ" value={booking.packageName ?? '—'} />
+            <Row label="ধরন" value={booking.packageType ?? '—'} />
             <Row label="হাজী সংখ্যা" value={String(booking.pilgrimsCount)} />
             <Row label="প্রস্থান" value={new Date(booking.departureDate).toLocaleDateString()} />
             <Row label="ফেরত" value={new Date(booking.returnDate).toLocaleDateString()} />

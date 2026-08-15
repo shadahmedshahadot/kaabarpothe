@@ -122,9 +122,9 @@ export interface BookingAssignmentDto {
 export interface BookingDto {
   id: string
   bookingCode: string
-  packageId: string
-  packageName: string
-  packageType: 'HAJJ' | 'UMRAH'
+  packageId: string | null
+  packageName: string | null
+  packageType: 'HAJJ' | 'UMRAH' | null
   userId: string | null
   pilgrimName: string
   pilgrimEmail: string

@@ -75,7 +75,7 @@ export function AdminBookingManager({ id }: { id: string }) {
 
       <PageTitle
         title={booking.bookingCode}
-        description={`${booking.packageName} · ${booking.pilgrimsCount} জন হাজী · ${booking.pilgrimName}`}
+        description={`${booking.packageName ?? '—'} · ${booking.pilgrimsCount} জন হাজী · ${booking.pilgrimName}`}
         action={
           <div className="flex gap-2 flex-wrap items-center">
             <span className={`text-xs font-semibold px-3 py-1.5 rounded-full border ${STATUS_TONE[booking.status]}`}>
@@ -115,8 +115,8 @@ function BookingOverview({ booking }: { booking: BookingDto }) {
     <div className="bg-card border border-border rounded-3xl p-6">
       <h3 className="font-bold text-foreground mb-4">বুকিং তথ্য</h3>
       <dl className="grid sm:grid-cols-2 gap-3 text-sm">
-        <Row label="প্যাকেজ" value={booking.packageName} />
-        <Row label="ধরন" value={booking.packageType} />
+        <Row label="প্যাকেজ" value={booking.packageName ?? '—'} />
+        <Row label="ধরন" value={booking.packageType ?? '—'} />
         <Row label="বুকিং তারিখ" value={formatDate(booking.bookedDate)} />
         <Row label="প্রস্থান" value={formatDate(booking.departureDate)} />
         <Row label="ফেরত" value={formatDate(booking.returnDate)} />

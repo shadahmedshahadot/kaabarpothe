@@ -49,7 +49,7 @@ export function BookingTracker({ code }: { code: string }) {
 
   return (
     <>
-      <PageTitle title={`বুকিং ${booking.bookingCode}`} description={booking.packageName} />
+      <PageTitle title={`বুকিং ${booking.bookingCode}`} description={booking.packageName ?? undefined} />
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
@@ -302,7 +302,7 @@ function SummaryCard({ booking }: { booking: BookingDto }) {
     <div className="bg-card border border-border rounded-3xl p-6">
       <h2 className="font-bold text-foreground mb-3">সারাংশ</h2>
       <dl className="space-y-2 text-sm">
-        <Row label="প্যাকেজ" value={booking.packageName} icon={CheckCircle2} />
+        <Row label="প্যাকেজ" value={booking.packageName ?? '—'} icon={CheckCircle2} />
         {booking.transportId && <Row label="পরিবহন" value="বরাদ্দ হয়েছে" icon={Bus} />}
         <Row label="পরিমাণ" value={`৳ ${booking.totalAmount.toLocaleString()}`} />
         <Row label="পরিশোধিত" value={`৳ ${booking.paidAmount.toLocaleString()}`} />
