@@ -8,9 +8,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <RouteGuard role="ADMIN">
       <DashboardShell
-        title="সাকিনাহ অ্যাডমিন"
-        subtitle="নিয়ন্ত্রণ কেন্দ্র"
-        accent="from-rose-500 to-orange-500"
+        title="কাবার পথে"
+        subtitle="অ্যাডমিন কন্ট্রোল প্যানেল"
+        accent="from-emerald-500 via-teal-500 to-cyan-500"
         navGroups={ADMIN_NAV_GROUPS}
         userName={ADMIN_USER.name}
         userRole={ADMIN_USER.role}
