@@ -8,7 +8,10 @@ export function OverviewTab({ pkg }: { pkg: Package }) {
     <div className="grid lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2 bg-card border border-border rounded-2xl p-8">
         <h2 className="text-2xl font-bold text-foreground mb-4">এই প্যাকেজ সম্পর্কে</h2>
-        <p className="text-muted-foreground leading-relaxed mb-6">{pkg.description}</p>
+        <div
+          className="package-rich-text text-muted-foreground leading-relaxed mb-6 space-y-3 [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_a]:text-primary [&_a]:underline [&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-foreground [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-foreground [&_h3]:font-semibold [&_h3]:text-foreground [&_strong]:text-foreground [&_img]:rounded-lg [&_img]:my-3"
+          dangerouslySetInnerHTML={{ __html: pkg.description || '' }}
+        />
 
         <h3 className="font-bold text-foreground mb-3">হাইলাইট</h3>
         <div className="grid grid-cols-2 gap-2">

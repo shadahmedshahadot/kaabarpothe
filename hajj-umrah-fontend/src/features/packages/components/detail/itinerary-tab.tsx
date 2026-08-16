@@ -25,7 +25,10 @@ export function ItineraryTab({ pkg }: { pkg: Package }) {
               </div>
               <div className="bg-muted/40 rounded-2xl p-5">
                 <h3 className="font-bold text-foreground mb-1">{day.title}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{day.description}</p>
+                <div
+                  className="package-rich-text text-sm text-muted-foreground mb-3 space-y-2 [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_a]:text-primary [&_a]:underline [&_strong]:text-foreground"
+                  dangerouslySetInnerHTML={{ __html: day.description || '' }}
+                />
                 <ul className="grid sm:grid-cols-2 gap-2">
                   {day.activities.map(a => (
                     <li key={a} className="flex items-start gap-2 text-xs text-foreground/80">
