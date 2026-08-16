@@ -101,7 +101,13 @@
       "PowerShell(npx tsc --noEmit 2>&1 | Out-String; $LASTEXITCODE)",
       "Bash(tasklist)",
       "Bash(netstat -ano)",
-      "Bash(kill bdchi1q7v *)"
+      "Bash(kill bdchi1q7v *)",
+      "Bash(npx --no-install tsc --noEmit)",
+      "Bash(awk '{print $NF}')",
+      "Bash(npx prisma@6.19.3 generate)",
+      "Bash(grep -rA 3 \"export.*revalidateTag\" node_modules/next/dist/cache.d.ts)",
+      "Bash(npx eslint *)",
+      "PowerShell(Get-Process *)"
     ]
   }
 }

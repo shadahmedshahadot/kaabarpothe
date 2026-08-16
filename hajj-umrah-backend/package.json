@@ -13,7 +13,7 @@
     "format": "prettier . --write",
     "db:seed": "prisma db seed",
     "db:migrate": "prisma migrate dev",
-    "vercel-build": "prisma generate && tsc",
+    "vercel-build": "prisma generate && prisma migrate deploy && tsc",
     "postinstall": "prisma generate"
   },
   "prisma": {
