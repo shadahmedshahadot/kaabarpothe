@@ -49,10 +49,7 @@ export const FOOTER_SECTIONS = [
     links: [
       { label: 'যোগাযোগ করুন', href: ROUTES.contact },
       { label: 'প্রশ্নোত্তর', href: ROUTES.faq },
-      { label: 'হেল্প সেন্টার', href: ROUTES.contact },
       { label: 'সাইন ইন', href: ROUTES.login },
-        { label: 'আমাদের সম্পর্কে', href: ROUTES.about },
-  { label: 'যোগাযোগ', href: ROUTES.contact },
     ],
   },
   {
