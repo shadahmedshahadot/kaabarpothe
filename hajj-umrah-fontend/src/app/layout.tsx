@@ -87,6 +87,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="bn-BD" dir="ltr" className={`${geistSans.variable} ${geistMono.variable} bg-background scroll-smooth`}>
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://www.youtube-nocookie.com" />
+      </head>
       <body className="font-sans antialiased text-foreground overflow-x-hidden">
         <a
           href="#main-content"
