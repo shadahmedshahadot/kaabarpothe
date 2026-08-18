@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Clock, Send, MessagesSquare, Building, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -21,7 +22,27 @@ const SUBJECT_MAP: Record<string, InquiryType> = {
   other: 'GENERAL',
 }
 
+const SUBJECT_PREFILL: Record<string, string> = {
+  package: 'প্যাকেজ সম্পর্কে জানতে চাই',
+  consultation: '১৫ মিনিটের বিনামূল্যে পরামর্শ',
+  booking: 'বিদ্যমান বুকিং সহায়তা',
+  group: 'গ্রুপ বুকিং (১০+ জন)',
+  other: '',
+}
+
 export default function ContactPage() {
+  return (
+    <Suspense fallback={null}>
+      <ContactInner />
+    </Suspense>
+  )
+}
+
+function ContactInner() {
+  const searchParams = useSearchParams()
+  const rawType = searchParams.get('type') ?? ''
+  const initialType = rawType in SUBJECT_MAP ? rawType : ''
+  const initialSubject = SUBJECT_PREFILL[initialType] ?? ''
   const [sent, setSent] = useState(false)
   const [createInquiry, { isLoading }] = useCreateInquiryMutation()
 
@@ -127,7 +148,7 @@ export default function ContactPage() {
 
                   <div>
                     <Label>কী বিষয়ে জানতে চান?</Label>
-                    <Select name="subjectType" required defaultValue="">
+                    <Select name="subjectType" required defaultValue={initialType}>
                       <option value="" disabled>জিজ্ঞাসার ধরন নির্বাচন করুন</option>
                       <option value="package">প্যাকেজ সংক্রান্ত প্রশ্ন</option>
                       <option value="consultation">বিনামূল্যে ১৫ মিনিটের পরামর্শ</option>
@@ -139,7 +160,7 @@ export default function ContactPage() {
 
                   <div>
                     <Label>বিষয়</Label>
-                    <Input name="subject" required placeholder="প্রিমিয়াম হজ্জ ২০২৬ — ৫ জনের গ্রুপ" />
+                    <Input name="subject" required defaultValue={initialSubject} placeholder="প্রিমিয়াম হজ্জ ২০২৬ — ৫ জনের গ্রুপ" />
                   </div>
 
                   <div>
