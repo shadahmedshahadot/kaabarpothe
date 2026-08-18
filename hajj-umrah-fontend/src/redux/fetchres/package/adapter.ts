@@ -35,7 +35,11 @@ export const adaptPackage = (dto: PackageDto): Package =>
       description: d.description,
       activities: d.activities,
     })),
-    gallery: (dto.gallery ?? []).map((g, i) => safeImage(g, `${dto.id}-g${i}`)),
+    gallery: (() => {
+      const cover = safeImage(dto.cover, dto.id)
+      const items = (dto.gallery ?? []).map((g, i) => safeImage(g, `${dto.id}-g${i}`))
+      return items.length ? items : [cover]
+    })(),
     cover: safeImage(dto.cover, dto.id),
     faqs: (dto.faqs ?? []).map(f => ({ q: f.question, a: f.answer })),
     highlights: dto.highlights,
